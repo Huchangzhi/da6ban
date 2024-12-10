@@ -276,7 +276,7 @@ class="math inline">\(P-S\)</span>条边</p>
     const countELement = document.getElementById('twikoo-count')
     if(!countELement) return
     twikoo.getCommentsCount({
-      envId: 'https://ltq.xn--920a.fun',
+      envId: 'https://ltq2.xn--920a.fun',
       region: 'true',
       urls: [window.location.pathname],
       includeReply: false
@@ -290,7 +290,7 @@ class="math inline">\(P-S\)</span>条边</p>
   const init = (el = document, path = location.pathname) => {
     twikoo.init({
       el: el.querySelector('#twikoo-wrap'),
-      envId: 'https://ltq.xn--920a.fun',
+      envId: 'https://ltq2.xn--920a.fun',
       region: 'true',
       onCommentLoaded: () => {
         btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
