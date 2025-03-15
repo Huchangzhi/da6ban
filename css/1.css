@@ -1,21 +1,7 @@
-/* #dify-chatbot-bubble-button { 
+#dify-chatbot-bubble-button { 
     background-color: #1C64F2 !important;
   }
   #dify-chatbot-bubble-window {
     width: 24rem !important;
     height: 40rem !important;
-  } */
-  #dify-chatbot-bubble-button {
-    background-color: #1C64F2 !important;
-    position: fixed; /* 使用 fixed 定位 */
-    bottom: 20px; /* 距离底部20像素 */
-    left: 20px; /* 距离左侧20像素 */
-}
-
-#dify-chatbot-bubble-window {
-    width: 24rem !important;
-    height: 40rem !important;
-    position: fixed; /* 使用 fixed 定位 */
-    bottom: 70px; /* 距离底部70像素（确保在按钮上方） */
-    left: 20px; /* 距离左侧20像素 */
-}
+  }
