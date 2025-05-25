@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>树状数组与线段树 | oier博客</title><meta name="author" content="Change"><meta name="copyright" content="Change"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="作者 ny_123457  注：如果图片太小看不太清，作者建议将图片另存为到图库或截图后再在图库查看（能放大就行）。 ## Part 1.树状数组 首先这个东西真的巨好用，它是利用数的二进制特征进行检索的一种树状结构，（虽然它模版绿），代码很短，仅需三个函数就可以实现单点修改，区间查询（区间求和），效率也很高。 接下来介绍树状数组是个什么玩意。 它都叫树状数组了，肯定要搞一棵树啊，假设我们有一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树状数组与线段树">
+<meta property="og:url" content="https://oi.胡.fun/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="oier博客">
+<meta property="og:description" content="作者 ny_123457  注：如果图片太小看不太清，作者建议将图片另存为到图库或截图后再在图库查看（能放大就行）。 ## Part 1.树状数组 首先这个东西真的巨好用，它是利用数的二进制特征进行检索的一种树状结构，（虽然它模版绿），代码很短，仅需三个函数就可以实现单点修改，区间查询（区间求和），效率也很高。 接下来介绍树状数组是个什么玩意。 它都叫树状数组了，肯定要搞一棵树啊，假设我们有一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huchangzhi.github.io/image/head.png">
+<meta property="article:published_time" content="2025-05-25T03:11:07.000Z">
+<meta property="article:modified_time" content="2025-05-25T03:13:16.181Z">
+<meta property="article:author" content="Change">
+<meta property="article:tag" content="小结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huchangzhi.github.io/image/head.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "树状数组与线段树",
+  "url": "https://oi.胡.fun/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/",
+  "image": "https://huchangzhi.github.io/image/head.png",
+  "datePublished": "2025-05-25T03:11:07.000Z",
+  "dateModified": "2025-05-25T03:13:16.181Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Change",
+      "url": "https://oi.胡.fun/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://huchangzhi.github.io/image/head.png"><link rel="canonical" href="https://oi.胡.fun/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '树状数组与线段树',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/1.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://huchangzhi.github.io/image/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://huchangzhi.github.io/image/head.png" alt="Logo"><span class="site-name">oier博客</span></a><a class="nav-page-title" href="/"><span class="site-name">树状数组与线段树</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">树状数组与线段树</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-25T03:11:07.000Z" title="发表于 2025-05-25 11:11:07">2025-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-25T03:13:16.181Z" title="更新于 2025-05-25 11:13:16">2025-05-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>作者 <a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1368090">ny_123457</a></p>
+</blockquote>
+<p><strong>注：如果图片太小看不太清，作者建议将图片另存为到图库或截图后再在图库查看（能放大就行）。</strong><br />
+## Part 1.树状数组
+首先这个东西真的巨好用，它是利用数的二进制特征进行检索的一种树状结构，<del>（虽然它模版绿）</del>，代码很短，仅需三个函数就可以实现单点修改，区间查询（区间求和），效率也很高。</p>
+<p><del>接下来介绍树状数组是个什么玩意。</del></p>
+<p>它都叫树状数组了，肯定要搞一棵树啊，假设我们有一个数列，然后问你一堆诸如求一个区间的最值或求区间和的问题，数据范围还很大，请问你怎么办？<del>暴力怼上去啊，能骗几分骗几分。</del>（考场上实在没办法了才打暴力。）</p>
+<p>这时候就可以写树状数组了（其实针对这个题也可以写后面才讲的线段树，但是线段树码量太大了，还是建议写树状数组），我们先设定有两个数组，<span
+class="math inline">\(A\)</span> 数组和 <span
+class="math inline">\(C\)</span> 数组，其中 <span
+class="math inline">\(A\)</span> 数组为我们输入的数组，<span
+class="math inline">\(C\)</span> 数组需要我们自行计算。</p>
+<p><span class="math inline">\(C\)</span> 数组的计算如下：<br />
+<span class="math inline">\(C_1=A_1\)</span><br />
+<span class="math inline">\(C_2=A_1+A_2\)</span><br />
+<span class="math inline">\(C_3=A_3\)</span><br />
+<span class="math inline">\(C_4=A_1+A_2+A_3+A_4\)</span><br />
+<span class="math inline">\(C_5=A_5\)</span><br />
+<span class="math inline">\(C_6=A_5+A_6\)</span><br />
+<span class="math inline">\(C_7=A_7\)</span><br />
+<span class="math inline">\(C_8=A_1+A_2+A_3+ \cdots +A_8\)</span><br />
+<span class="math inline">\(\cdots\)</span></p>
+<p>等等，它不是一种用二进制特征进行检索的树状数据结构吗？这跟二进制有什么联系？（阅读本文时建议先思考这个问题在往下读）</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/dj5enn49.png?x-oss-process=image/resize,m_lfit,h_170,w_225" /></p>
+<p>把 <span class="math inline">\(C\)</span> 数组转化为递推表达式就是
+<span class="math inline">\(C_i=A_{2^k+1}+ \cdots +A_i\)</span>。其中
+<span class="math inline">\(k\)</span> 为 <span
+class="math inline">\(i\)</span> 对应的二进制数末尾 <span
+class="math inline">\(0\)</span> 的个数，<span
+class="math inline">\(i\)</span> 从 <span
+class="math inline">\(1\)</span> 开始计算，但是问题又来了，知道 <span
+class="math inline">\(i\)</span> 怎么求 <span
+class="math inline">\(2^k\)</span>？我们 C++
+代码中的与运算能够很好的解决这个问题，将答案写入代码中就是
+<code>i&amp;(-i)</code>（不了解位运算的建议去翻别人的博客学习一下）。</p>
+<p>于是，我们的第一个函数就诞生了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们再来思考关于求和的问题，当我们求 <span
+class="math inline">\(A_1+A_2+ \cdots +A_x\)</span> 的之和时，<span
+class="math inline">\(C_x\)</span> 如果包含的不一定是 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(x\)</span> 的全部和（比如 <span
+class="math inline">\(C_6=A_5+A_6\)</span>） 就需要再找一个 <span
+class="math inline">\(C_k\)</span>（显然 <span
+class="math inline">\(k&lt;x\)</span>）累加起来，这个 <span
+class="math inline">\(k\)</span> 我们称之为 <span
+class="math inline">\(x\)</span> 的前驱，例如:</p>
+<p><span class="math inline">\(A_1+A_2+ \cdots
++A_6=C_6+C_4\)</span><br />
+<span class="math inline">\(A_1+A_2+ \cdots
++A_7=C_7+C_6+C_4\)</span></p>
+<p>前驱的编号：比自己小的，最近的，最末连续 <span
+class="math inline">\(0\)</span> 比自己多的数（在二进制下）。</p>
+<p>所以设 <span class="math inline">\(x\)</span> 的前驱为 <span
+class="math inline">\(k\)</span>，则 <code>k=x-lowbit(x)</code>，相当于
+<span class="math inline">\(x\)</span> 减掉了自己最右边的 <span
+class="math inline">\(1\)</span>。</p>
+<p>所以，我们的第二个用于求和的函数诞生了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getsum</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> k=x;k&gt;<span class="number">0</span>;k-=<span class="built_in">lowbit</span>(k))sum+=c[k];</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">```   </span><br><span class="line">这个只能用于求从 $<span class="number">1</span>$ 到 $x$ 项的和，如果要求区间和，假设是区间 $[x,y]$，则这个区间的区间和就为 ```<span class="built_in">getsum</span>(y)-<span class="built_in">getsum</span>(x<span class="number">-1</span>)```。（减一是因为 $A_x$ 也是算入这个区间的。）</span><br><span class="line"></span><br><span class="line">然后就是剩下的单点修改了，还是前面放的那个图，如果修改了某个 $A_i$ 那么所有跟这个 $A_i$ 相关的 $C_i$ 就也全部需要修改，翻译成人话就是更改从该叶子节点到根节点路径上的所有 $C_i$。这里的父亲节点就是比自己大的，最近的，二进制下末尾 $<span class="number">0</span>$ 的数量最多的数，所以 $x$ 节点的父亲节点的编号就是 ```x+<span class="built_in">lowbit</span>(x)```。</span><br><span class="line"></span><br><span class="line">单点修改函数如下：  </span><br><span class="line"></span><br><span class="line">```<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=x;i&lt;=n;i+=<span class="built_in">lowbit</span>(i))c[i]+=y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后一看，我滴妈呀，时间复杂度仅为 <span class="math inline">\(O(\log
+n)\)</span>，所以一般情况下能写树状数组就写树状数组（单纯想练习线段树的除外）。</p>
+<p><strong>然后恭喜你已学会树状数组的基本操作！</strong></p>
+<h2 id="part-2.线段树">Part 2.线段树</h2>
+<p>该来的还是来了。这个东西和树状数组很像，但是它比树状数组多支持了个区间修改和区间查询，效率也很高，但有个很无语的缺点：<strong>码量太大了</strong>，动不动就一百多行的，这也就意味着很难调，考场遇到了如果时间不那么充足就建议直接打个暴力上去，线段树的题暴力分一般会比较高。</p>
+<p>线段树是一种特殊的二叉树，它可以将一个线性的序列组织成一个树状结构，从而可以在对数的时间复杂度下访问序列上的任意一个区间并进行维护，在线段树中，每一个节点要么没有子节点，有么就有两个子节点，其中每一个节点记录的都是一个区间和或一个区间的最值，一个父亲节点的值就为它的两个儿子节点的值的合并体，举个例子，如果这个节点的子节点记录的分别是区间
+<span class="math inline">\([1,3]\)</span> 和区间 <span
+class="math inline">\([4,5]\)</span>
+的和（或最值），它们的父亲节点记录的就是区间 <span
+class="math inline">\([1,5]\)</span>
+的和（或最值），线段树支持单点修改，区间修改，单点查询，区间查询。</p>
+<p>下面的图片所呈现的就是一个合法的线段树：</p>
+<figure>
+<img
+src="https://cdn.luogu.com.cn/upload/image_hosting/tujkvxrd.png?x-oss-process=image/resize,m_lfit,h_170,w_225"
+alt="logo" />
+<figcaption aria-hidden="true">logo</figcaption>
+</figure>
+<p>若一个节点的编号为 <span
+class="math inline">\(x\)</span>，那么它的子节点的编号就分别为 <span
+class="math inline">\(2 \times x\)</span> 与 <span
+class="math inline">\(2 \times x
++1\)</span>。<del>二叉树常识都知道的吧。</del></p>
+<p>一些线段树的性质：<br />
+- 长度为 <span class="math inline">\(n\)</span>
+的序列建的线段树，节点个数为 <span class="math inline">\(2n-1\)</span>。
+- 长度为 <span class="math inline">\(n\)</span>
+的序列建的线段树，树深度为 <span
+class="math inline">\(\log(n)\)</span>。 -
+线段树需要维护的东西一定具有可合并性。</p>
+<p>接下来就可以想想怎么建树了，上文说了，一个节点表示的是一个区间的数据，因此一个节点要至少三个数据，分别是左端点，右端点和区间数据（如果有区间修改这种高级操作那么就还需要一个懒标记，作用后文会提到）由于这是一颗二叉树，而我们输入的是一个序列，因此空间需要开四倍。</p>
+<p>接下来就可以写合并和建树的函数了，首先合并的题目给啥合并啥，比如求和的那么当前节点的区间数据即为它两个儿子的区间数据的和，最值即为它两个儿子的区间数据的最值。建树就可以用递归（和
+DFS
+的思路差不多）进行，一直往下推，如果当前节点的左端点与右端点重合（区间仅为这单独的一个点），那么这个节点的区间数据即为这个单独的点的值，单点建树时间复杂度同样为
+<span class="math inline">\(O(\log(n))\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">lilaoshi</span>&#123;</span><br><span class="line">	<span class="type">int</span> l,r,val;</span><br><span class="line">&#125;tree[<span class="number">4</span>*maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">	tree[p].val=tree[<span class="number">2</span>*p].val+tree[<span class="number">2</span>*p<span class="number">+1</span>].val;</span><br><span class="line">&#125;<span class="comment">//这里以求和为例</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">	tree[p].l=x;</span><br><span class="line">	tree[p].r=y;</span><br><span class="line">	<span class="keyword">if</span>(x==y)&#123;</span><br><span class="line">		tree[p].val=a[x];</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid=(x+y)/<span class="number">2</span>;</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>,x,mid);</span><br><span class="line">	<span class="built_in">build</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,y);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在就该考虑单点修改操作了，可以先设一个需要改变的值，然后就是需要改变的数和当前改变的数的编号，然后就是与
+<code>build</code>
+函数一样的思想，先往下递归，如果这是一个单点区间，那么就直接更改该节点的区间数据，否则就二分下去查找（遍历自己的两个儿子），时间复杂度（单点修改）同样为
+<span class="math inline">\(O(\log(n))\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> k,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(tree[p].l==tree[p].r)&#123;</span><br><span class="line">		tree[p].val+=d;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(k&lt;=tree[p&lt;&lt;<span class="number">1</span>].r)<span class="built_in">add</span>(p&lt;&lt;<span class="number">1</span>,k,d);</span><br><span class="line">	<span class="keyword">if</span>(k&gt;=tree[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].l)<span class="built_in">add</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,k,d);</span><br><span class="line">	<span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就是区间求和和最值了，首先假设我们要找的区间为 <span
+class="math inline">\([l,r]\)</span>，当前所遍历到的区间为 <span
+class="math inline">\([x,y]\)</span>，如果这两个区间八竿子打不着（没有相交）就可以直接跳过了（看情况，求和返回
+<span
+class="math inline">\(0\)</span>，求最值返回一个很大或很小的数），如果
+<span class="math inline">\([l,r]\)</span> 完全包含 <span
+class="math inline">\([x,y]\)</span>，那么直接返回被包含的区间数据，反正都要求了先把部分搞出来在搞全部也可以，如果有相交的地方就接着遍历左右儿子，总有整个区间都被包含的，时间复杂度又双叕叕是
+<span class="math inline">\(O(\log(n))\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getsum</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(t&lt;tree[p].l||s&gt;tree[p].r)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(s&lt;=tree[p].l&amp;&amp;tree[p].r&lt;=t)<span class="keyword">return</span> tree[p].val;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">getsum</span>(p&lt;&lt;<span class="number">1</span>,s,t)+<span class="built_in">getsum</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,s,t);</span><br><span class="line">    <span class="comment">//求最值：return max/min(getsum(p&lt;&lt;1,s,t),getsum(p&lt;&lt;1|1,s,t));</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>某邪恶的何老板：都这样了，那我不让你去求区间数据，让你求修改完的单点数据怎么办？这还不简单，从根节点开始一直二分遍历自己的所有儿子，总有一个儿子是只包含这一个点的，时间复杂度……传奇
+<span class="math inline">\(O(\log(n))\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getval</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(tree[p].l==tree[p].r)<span class="keyword">return</span> tree[p].val;</span><br><span class="line">	<span class="keyword">if</span>(k&lt;=tree[p&lt;&lt;<span class="number">1</span>].r)<span class="keyword">return</span> <span class="built_in">getval</span>(p&lt;&lt;<span class="number">1</span>,k);</span><br><span class="line">	<span class="keyword">if</span>(k&gt;=tree[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].l)<span class="keyword">return</span> <span class="built_in">getval</span>(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来就该是区间修改了: -
+在区间修改时，显然不能暴力地修改每个叶子，那样效率很低。 -
+为此，引入延迟标记（又称为懒标记或者
+<code>lazy</code>），记录一些区间修改的信息。 -
+当递归至一个被完全包含的区间时，在这个区间上打一个延迟标记，记录这个区间中的每个数都需要被加上某个数，然后直接修改该结点的区间和并返回，不再向下递归（省时）。
+-
+当新访问到一个结点时，先将延迟标记下放到子结点结点，然后再进行递归。</p>
+<p>简而言之：<br />
+如果需要对一个区间中每一个叶结点进行操作，我们不妨先别忙着操作，而是在所有大区间上做一个标记，下一次遇到或要用到时，再进行处理（标记传递）。</p>
+<p>具体的例子可以通过下面的图片来了解一下。<br />
+<img
+src="https://cdn.luogu.com.cn/upload/image_hosting/udi2ktqr.png?x-oss-process=image/resize,m_lfit,h_170,w_225"
+alt="logo" /></p>
+<p>但是懒标记有的时候可能修改完了都还没有分下去，于是我们再求答案时也需要再下放一次懒标记。</p>
+<p>至于代码部分，区间修改的代码相较于单点修改差不多，就是在更改这一节点是也一起更改懒标记，更新懒标记直接二分模拟，下发懒标记同样模拟，但要注意，只有在这个懒标记的值不为
+<span class="math inline">\(0\)</span> 时才能下发，时间复杂度……<span
+class="math inline">\(O(\log(n))\)</span> <del>得了 MVP</del>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">void maketag(int p,int len,int x)&#123;</span><br><span class="line">	tree[p].lazy+=x;</span><br><span class="line">	tree[p].val+=x;</span><br><span class="line">&#125;</span><br><span class="line">void pushdown(int p)&#123;</span><br><span class="line">	int M=tree[p].r+tree[p].l&gt;&gt;1;</span><br><span class="line">	maketag(p&lt;&lt;1,M-tree[p].l+1,tree[p].lazy);</span><br><span class="line">	maketag(p&lt;&lt;1|1,tree[p].r-M,tree[p].lazy);</span><br><span class="line">	tree[p].lazy=0;</span><br><span class="line">&#125;</span><br><span class="line">void tag(int u)&#123;</span><br><span class="line">	if(tree[u].lazy)&#123;</span><br><span class="line">		int d=tree[u].lazy;</span><br><span class="line">		tree[u].lazy=0;</span><br><span class="line">		tree[u&lt;&lt;1].lazy+=d;</span><br><span class="line">		tree[u&lt;&lt;1].val+=d;</span><br><span class="line">		tree[u&lt;&lt;1|1].lazy+=d;</span><br><span class="line">		tree[u&lt;&lt;1|1].val+=d;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void add(int p,int x,int y,int d)&#123;</span><br><span class="line">	if(x&lt;=tree[p].l &amp;&amp; tree[p].r&lt;=y)&#123;</span><br><span class="line">		tree[p].val+=d;</span><br><span class="line">		tree[p].lazy+=d;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	tag(p);</span><br><span class="line">	int mid=tree[p].l+tree[p].r&gt;&gt;1;</span><br><span class="line">	if(x&lt;=mid) add(p&lt;&lt;1,x,y,d);</span><br><span class="line">	if(y&gt;mid) add(p&lt;&lt;1|1,x,y,d);</span><br><span class="line">	pushup(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="part-3.动态开点线段树">Part 3.动态开点线段树</h2>
+<p>先讲一个故事：有一天，我正在亲亲苦苦的刷线段树的题，看到一个题我觉得像模版就应该不难，然后数组
+<span class="math inline">\(10^5\)</span>
+不想改了，正常写完交上去硬控我三分钟。</p>
+<figure>
+<img
+src="https://cdn.luogu.com.cn/upload/image_hosting/vzv5lc8i.png?x-oss-process=image/resize,m_lfit,h_170,w_225"
+alt="logo" />
+<figcaption aria-hidden="true">logo</figcaption>
+</figure>
+<p>后来一看数据……</p>
+<figure>
+<img
+src="https://cdn.luogu.com.cn/upload/image_hosting/6t9urdzl.png?x-oss-process=image/resize,m_lfit,h_170,w_225"
+alt="logo" />
+<figcaption aria-hidden="true">logo</figcaption>
+</figure>
+<p><span class="math inline">\(10^9\)</span>
+的数据空间太大了，肯定不能用普通线段树去做，而这个问题有做多只会有 <span
+class="math inline">\(5 \times 10^5\)</span>
+的操作次数。因此，动态开点线段树就可以完成这个问题。</p>
+<p>首先朴素线段树的建树是每一个节点都要建，这样很费空间，动态开点线段树是要用到的节点才建树，举个例子，当前遍历到了节点
+<span class="math inline">\(x\)</span>，则 <span
+class="math inline">\(x\)</span>
+的所有祖宗节点都需要建，其他点就不用。</p>
+<p>翻译成人话：线段树动态开点的意思是一开始不用建立树，当我们在进行操作过程中，发现需要走到一个节点时，如果这个节点还没建立，我们才建立这个节点。</p>
+<p>动态开点的作用是节约空间，避免离散化，时间复杂度同朴素线段树。</p>
+<p>下图就是一个例子：<br />
+<img
+src="https://cdn.luogu.com.cn/upload/image_hosting/91m38h3j.png?x-oss-process=image/resize,m_lfit,h_170,w_225"
+alt="logo" /></p>
+<p>至于代码部分，由于每次构建的节点不像线段树一样有一个固定的编号，因此需要自己设立一个变量来记录当前遍历到的节点的编号，其余部分同朴素线段树，本文用
+<span class="math inline">\(tot\)</span> 来表示节点的编号，注意：<span
+class="math inline">\(tot\)</span> 需要初始化为 <span
+class="math inline">\(1\)</span>，首个需自行建立的节点计算时编号为 <span
+class="math inline">\(2\)</span> 编号为 <span
+class="math inline">\(1\)</span> 的节点为根节点。</p>
+<p><strong>细节：使用动态开点线段树是为了节省空间，因此数组无需开四倍。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">5e5</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> n,m,k,ans,tot=<span class="number">1</span>,ls[maxn*<span class="number">4</span>],rs[maxn*<span class="number">4</span>],lazy[maxn*<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;=l&amp;&amp;r&lt;=y)&#123;</span><br><span class="line">		lazy[p]=<span class="built_in">max</span>(lazy[p],d);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;=mid)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ls[p]==<span class="number">0</span>)ls[p]=++tot;</span><br><span class="line">		<span class="built_in">add</span>(ls[p],l,mid,x,y,d);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(mid&lt;y)&#123;</span><br><span class="line">		<span class="keyword">if</span>(rs[p]==<span class="number">0</span>)rs[p]=++tot;</span><br><span class="line">		<span class="built_in">add</span>(rs[p],mid<span class="number">+1</span>,r,x,y,d);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">putdown</span><span class="params">(<span class="type">int</span> p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ls[p])lazy[ls[p]]=<span class="built_in">max</span>(lazy[ls[p]],lazy[p]);</span><br><span class="line">	<span class="keyword">if</span>(rs[p])lazy[rs[p]]=<span class="built_in">max</span>(lazy[rs[p]],lazy[p]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getans</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="built_in">putdown</span>(p);</span><br><span class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span> lazy[p];</span><br><span class="line">	<span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ls[p])sum+=<span class="built_in">getans</span>(ls[p],l,mid);</span><br><span class="line">	<span class="keyword">else</span> sum+=lazy[p]*(mid-l<span class="number">+1</span>);</span><br><span class="line">	<span class="keyword">if</span>(rs[p])sum+=<span class="built_in">getans</span>(rs[p],mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="keyword">else</span> sum+=lazy[p]*(r-mid);</span><br><span class="line">	<span class="keyword">return</span> sum;<span class="comment">//依旧以求和为例</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完结撒花">完结撒花！</h2>
+<h2 id="inf.鸣谢">inf.鸣谢</h2>
+<p>感谢 lijing2020 的教学与精神支持！<br />
+感谢 Huchangzhi 的课件记录！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://oi.xn--920a.fun">Change</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://oi.胡.fun/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/">https://oi.胡.fun/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://oi.xn--920a.fun" target="_blank">oier博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B0%8F%E7%BB%93/">小结</a></div><div class="post-share"><div class="social-share" data-image="https://huchangzhi.github.io/image/head.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/14514/11/14/%E9%80%9A%E7%9F%A5/" title="通知"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">通知</div></div><div class="info-2"><div class="info-item-1">hczchat hczchat上线了,不要滥用 网盘反馈 在下方反馈区反馈 征集文章 如果想要在这个网站网上自己文章的话,可以线下找hcz或在下面评论区(部分时候会关闭)或在luogu找huchangzhi 留言 留言可在文章下方留言 </div></div></div></a><a class="pagination-related" href="/2025/05/19/ST%E8%A1%A8%EF%BC%8CLCA%EF%BC%8C%E7%BA%BF%E6%AE%B5%E6%A0%91%20%E7%AC%94%E8%AE%B0/" title="ST表，LCA，线段树笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">ST表，LCA，线段树笔记</div></div><div class="info-2"><div class="info-item-1">ST表，LCA，线段树 笔记 作者：\(hcz\) ST表 基本原理 在求区间最值时，若一个大区间若能被两个小区间覆盖，那么大区间的最值等于两个小区间的最值。  如图 步骤 1. 把数列按倍增分成小区间  如图，直接明了 2. 查询任意区间的最值 把需查询区间 \([l, r]\) 分为两个区间，且两区间同属一组：  以 \(L\) 为起点的小区间 以 \(R\) 为终点的小区间  这两个小区间首尾相接覆盖 \([L, R]\) 实现 \(f[i][j]\) 表示从第 \(i\) 个位置开始，长度为 \(2^j\) 的区间的最大值。 预处理 \[ f[i][0] = a[i] \] \[ f[i][j] = \max(f[i][j-1], f[i + 2^{j-1}][j-1]) \] 查询 查 \([l, r]\) 先找到最大的满足 \(2^j \le r - l + 1\) 的 \(j\) \[ j = \lfloor \log_2(r - l + 1) \rfloor \] 区间最值为： \[ \max(f[l][j], f[r - 2^j +...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/19/ST%E8%A1%A8%EF%BC%8CLCA%EF%BC%8C%E7%BA%BF%E6%AE%B5%E6%A0%91%20%E7%AC%94%E8%AE%B0/" title="ST表，LCA，线段树笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-19</div><div class="info-item-2">ST表，LCA，线段树笔记</div></div><div class="info-2"><div class="info-item-1">ST表，LCA，线段树 笔记 作者：\(hcz\) ST表 基本原理 在求区间最值时，若一个大区间若能被两个小区间覆盖，那么大区间的最值等于两个小区间的最值。  如图 步骤 1. 把数列按倍增分成小区间  如图，直接明了 2. 查询任意区间的最值 把需查询区间 \([l, r]\) 分为两个区间，且两区间同属一组：  以 \(L\) 为起点的小区间 以 \(R\) 为终点的小区间  这两个小区间首尾相接覆盖 \([L, R]\) 实现 \(f[i][j]\) 表示从第 \(i\) 个位置开始，长度为 \(2^j\) 的区间的最大值。 预处理 \[ f[i][0] = a[i] \] \[ f[i][j] = \max(f[i][j-1], f[i + 2^{j-1}][j-1]) \] 查询 查 \([l, r]\) 先找到最大的满足 \(2^j \le r - l + 1\) 的 \(j\) \[ j = \lfloor \log_2(r - l + 1) \rfloor \] 区间最值为： \[ \max(f[l][j], f[r - 2^j +...</div></div></div></a><a class="pagination-related" href="/2024/12/02/%E5%91%A8%E8%B5%9B2%E5%B0%8F%E7%BB%93/" title="周赛2小结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-02</div><div class="info-item-2">周赛2小结</div></div><div class="info-2"><div class="info-item-1">这是hcz写的周赛2小结      愣着干嘛，看看AI摘要啊，点击后请等待，请不要重复点击       /* 动画样式 */     .spinner {         border: 4px solid rgba(0, 0, 0, 0.1);         width: 20px;         height: 20px;         border-radius: 50%;         border-left-color: #09f;         animation: spin 1s linear infinite;     }      @keyframes spin {         0% {             transform: rotate(0deg);         }          100% {             transform: rotate(360deg);         }     }      .markdown-body {         padding: 15px;        ...</div></div></div></a><a class="pagination-related" href="/2024/11/28/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E6%80%BB%E7%BB%93/" title="最小生成树总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-28</div><div class="info-item-2">最小生成树总结</div></div><div class="info-2"><div class="info-item-1">这是hcz写的最小生成树总结      愣着干嘛，看看AI摘要啊，点击后请等待，请不要重复点击       /* 动画样式 */     .spinner {         border: 4px solid rgba(0, 0, 0, 0.1);         width: 20px;         height: 20px;         border-radius: 50%;         border-left-color: #09f;         animation: spin 1s linear infinite;     }      @keyframes spin {         0% {             transform: rotate(0deg);         }          100% {             transform: rotate(360deg);         }     }      .markdown-body {         padding: 15px;        ...</div></div></div></a><a class="pagination-related" href="/2025/03/12/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA%E7%AC%94%E8%AE%B0/" title="基础数论笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-12</div><div class="info-item-2">基础数论笔记</div></div><div class="info-2"><div class="info-item-1">这是一篇基础数论的笔记,由ny_123457提供      愣着干嘛，看看AI摘要啊，点击后请等待，请不要重复点击   /* 动画样式 */     .spinner {         border: 4px solid rgba(0, 0, 0, 0.1);         width: 20px;         height: 20px;         border-radius: 50%;         border-left-color: #09f;         animation: spin 1s linear infinite;     }      @keyframes spin {         0% {             transform: rotate(0deg);         }          100% {             transform: rotate(360deg);         }     }      .markdown-body {         padding: 15px;        ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://huchangzhi.github.io/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Change</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1031975"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果要在这个网站发布文章,请线下或线上找hcz,<a target="_blank" rel="noopener" href="https://udify.app/chat/IugHAgbm0OX7sLSt">oiAI</a>  <a target="_blank" rel="noopener" href="https://udify.app/chat/QmDHgfHuUzCESxNt">     DeepGemini</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-2.%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">Part 2.线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-3.%E5%8A%A8%E6%80%81%E5%BC%80%E7%82%B9%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.</span> <span class="toc-text">Part 3.动态开点线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E7%BB%93%E6%92%92%E8%8A%B1"><span class="toc-number">3.</span> <span class="toc-text">完结撒花！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inf.%E9%B8%A3%E8%B0%A2"><span class="toc-number">4.</span> <span class="toc-text">inf.鸣谢</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/14514/11/14/%E9%80%9A%E7%9F%A5/" title="通知">通知</a><time datetime="+014514-11-14T03:45:14.000Z" title="发表于 14514-11-14 11:45:14">14514-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="树状数组与线段树">树状数组与线段树</a><time datetime="2025-05-25T03:11:07.000Z" title="发表于 2025-05-25 11:11:07">2025-05-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/19/ST%E8%A1%A8%EF%BC%8CLCA%EF%BC%8C%E7%BA%BF%E6%AE%B5%E6%A0%91%20%E7%AC%94%E8%AE%B0/" title="ST表，LCA，线段树笔记">ST表，LCA，线段树笔记</a><time datetime="2025-05-19T15:03:43.000Z" title="发表于 2025-05-19 23:03:43">2025-05-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/12/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA%E7%AC%94%E8%AE%B0/" title="基础数论笔记">基础数论笔记</a><time datetime="2025-03-12T13:03:43.000Z" title="发表于 2025-03-12 21:03:43">2025-03-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/01/Atcoder-better%E4%B8%8Ecodefouces-better%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/" title="Atcoder better与codefouces better安装方法">Atcoder better与codefouces better安装方法</a><time datetime="2025-03-01T15:04:59.000Z" title="发表于 2025-03-01 23:04:59">2025-03-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Change</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://ltq2.xn--920a.fun',
+      region: 'true',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://ltq2.xn--920a.fun',
+      region: 'true',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>
+  window.difyChatbotConfig = { token: 'IugHAgbm0OX7sLSt' }
+</script>
+<script src="/js/1.min.js" id="IugHAgbm0OX7sLSt" defer> </script><script type="text/javascript" color="180,180,180" opacity="0.5" count="200" src = "/js/2.js"> </script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
