@@ -10,5 +10,8 @@
 #aside-content .container  {
     background: var(--light_bg_color)
 }
+#aside-content .post-content  {
+    background: var(--light_bg_color)
+}
 
 
