@@ -18,6 +18,7 @@
 /*所有页面实现毛玻璃特效*/
 #aside-content{
     background: rgba(255,255,255,0);
+    background: var(--light_bg_color)
 }
 
 #aside-content > .card-widget:first-child {
@@ -38,6 +39,7 @@
 #recent-posts > .recent-post-item {
     background: rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
+    background: var(--light_bg_color);
 }
 
 /*标题栏*/
