@@ -1,10 +1,7 @@
 // ==UserScript==
-
-//注意：本版本为hcz修改,仅限南渝信竞班自用!
-
-// @name         Atcoder Better
-// @namespace    https://cdl.xn--920a.fun/dl/https://greasyfork.org/users/747162
-// @version      1.18.0
+// @name         Atcoder Better!
+// @namespace    https://greasyfork.org/users/747162
+// @version      1.19.0
 // @description  一个适用于 AtCoder 的 Tampermonkey 脚本，增强功能与界面。
 // @author       北极小狐
 // @match        *://atcoder.jp/*
@@ -19,7 +16,6 @@
 // @connect      translate.google.com
 // @connect      openai.api2d.net
 // @connect      api.openai.com
-// @connect      cdl.xn--920a.fun
 // @connect      www.luogu.com.cn
 // @connect      vjudge.net
 // @connect      clist.by
@@ -38,31 +34,29 @@
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @grant        GM_getResourceText
-// @icon         https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/atcoder.png
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/turndown/7.2.0/turndown.min.js#sha512-sJzEecN5Nk8cq81zKtGq6/z9Z/r3q38zV9enY75IVxiG7ybtlNUt864sL4L1Kf36bYIwxTMVKQOtU4VhD7hGrw==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/markdown-it/13.0.2/markdown-it.js#sha512-2LtYcLGnCbAWz9nDIrfG2pHFiFu9n+3oGecQlzLuYsLgen/oxiYscGWnDST9J9EZanlsQkDD0ZP2n/6peDuALQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/crypto-js/4.2.0/crypto-js.min.js#sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/chroma-js/2.4.2/chroma.min.js#sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/xterm/5.5.0/xterm.js#sha512-Gujw5GajF5is3nMoGv9X+tCMqePLL/60qvAv1LofUZTV9jK8ENbM9L+maGmOsNzuZaiuyc/fpph1KT9uR5w3CQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dexie/4.0.7/dexie.min.js#sha512-882VotT07mOQRzqIxsyxHzJX0XUaoeee3qXp4THg1A0KI0XFnWFAaLFQm0x6OW3pHSIipVZW+gzQ1w9b6uvkVw==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/i18next/23.11.5/i18next.min.js#sha512-3RSGkmT48HnO+hlmzGYDx5/w2LIBX0O5hSuYX6KWAxmvVlSjFgoxIaWa2tlMExheGvt3lLyxeTsXfpC47yb8CQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js#sha512-bBb+wrGRTx4MvHpksYb1Iv5oJ1o8ineCqpc0cnTgdJQhuAFJJ93SEVXxUOCptvt0vAqYdjzWO5emorYUBt6Ceg==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js#sha512-79RgNpOyaf8AvNEUdanuk1x6g53UPoB6Fh2uogMkOMGADBG6B0DCzxc+dDktXkVPg2rlxGvPeAFKoZxTycVooQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/highlight.js/11.9.0/highlight.min.js#sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==
-// @require      https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js#sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA==
-// @require      https://cdl.xn--920a.fun/dl/https://update.greasyfork.org/scripts/484742/1311040/i18nextChainedBackendjs.js#sha512-JYm2AqU8EvoEOnCucDItAsNtmGcjbxccOXjnwNFp87zdlyclpEephXrgR2sMlWj/gL4DCJUN3X0JhI1omaRO0A==
-// @require      https://cdl.xn--920a.fun/dl/https://update.greasyfork.org/scripts/484743/1311041/i18next-localstorage-backendjs.js#sha512-kY1lU3DCvgzkWkOl47sIlmLKdgDcO4T3NYN6p/ET4oi3fnKO74sHUt1xYGtksIHXciKF8Jt+N4RDqG3CRoeYww==
-// @resource     acwing_cpp_code_completer https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/acwing_cpp_code_completer-0.0.11.json#sha512-DQVpao4qMMExToRdid0g/S0nbO/C9hwCECjI5aW8A0g7nvi8hEcD2Lw3QIqdJBV7haP15oJOocfwuiw7ryTO9w==
-// @resource     wandboxlist https://cdl.xn--920a.fun/dl/https://wandbox.org/api/list.json
-// @resource     xtermcss https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/xterm/5.5.0/xterm.min.css#sha512-XpXUuzg5afNt1bsgnrOesXP70TLH8tXYYK5sK+Y0UV+YBvJn9EfRFYWy4HT3TVDfH0nl1CO0lwOxIrt2gk9qjg==
-// @resource     selectpagecss https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/css/selectpage.css#sha512-cRXJfA2tEcAxHEKylJfxteY17N7j9fia3waahHOVnvl63uVZT9OQ7jjjpofZMVZ4JSX3BRET+mI8UvKnsXd3NA==
-// @resource     dialogpolyfillcss https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.css#sha512-J2+1q+RsZuJXabBfH1q/fgRr6jMy9By5SwVLk7bScEW7NFJkMUXxfeOyyxtDe6fsaJ4jsciexSlGrPYn9YbBIg==
+// @icon         https://aowuucdn.oss-accelerate.aliyuncs.com/atcoder.png
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/turndown/7.2.0/turndown.min.js#sha512-sJzEecN5Nk8cq81zKtGq6/z9Z/r3q38zV9enY75IVxiG7ybtlNUt864sL4L1Kf36bYIwxTMVKQOtU4VhD7hGrw==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/markdown-it/13.0.2/markdown-it.js#sha512-2LtYcLGnCbAWz9nDIrfG2pHFiFu9n+3oGecQlzLuYsLgen/oxiYscGWnDST9J9EZanlsQkDD0ZP2n/6peDuALQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/crypto-js/4.2.0/crypto-js.min.js#sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/chroma-js/2.4.2/chroma.min.js#sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/xterm/5.5.0/xterm.js#sha512-Gujw5GajF5is3nMoGv9X+tCMqePLL/60qvAv1LofUZTV9jK8ENbM9L+maGmOsNzuZaiuyc/fpph1KT9uR5w3CQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dexie/4.0.7/dexie.min.js#sha512-882VotT07mOQRzqIxsyxHzJX0XUaoeee3qXp4THg1A0KI0XFnWFAaLFQm0x6OW3pHSIipVZW+gzQ1w9b6uvkVw==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/i18next/23.11.5/i18next.min.js#sha512-3RSGkmT48HnO+hlmzGYDx5/w2LIBX0O5hSuYX6KWAxmvVlSjFgoxIaWa2tlMExheGvt3lLyxeTsXfpC47yb8CQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js#sha512-bBb+wrGRTx4MvHpksYb1Iv5oJ1o8ineCqpc0cnTgdJQhuAFJJ93SEVXxUOCptvt0vAqYdjzWO5emorYUBt6Ceg==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js#sha512-79RgNpOyaf8AvNEUdanuk1x6g53UPoB6Fh2uogMkOMGADBG6B0DCzxc+dDktXkVPg2rlxGvPeAFKoZxTycVooQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/highlight.js/11.9.0/highlight.min.js#sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==
+// @require      https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js#sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA==
+// @resource     acwing_cpp_code_completer https://aowuucdn.oss-accelerate.aliyuncs.com/acwing_cpp_code_completer-0.0.11.json#sha512-DQVpao4qMMExToRdid0g/S0nbO/C9hwCECjI5aW8A0g7nvi8hEcD2Lw3QIqdJBV7haP15oJOocfwuiw7ryTO9w==
+// @resource     wandboxlist https://wandbox.org/api/list.json
+// @resource     xtermcss https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/xterm/5.5.0/xterm.min.css#sha512-XpXUuzg5afNt1bsgnrOesXP70TLH8tXYYK5sK+Y0UV+YBvJn9EfRFYWy4HT3TVDfH0nl1CO0lwOxIrt2gk9qjg==
+// @resource     selectpagecss https://aowuucdn.oss-accelerate.aliyuncs.com/css/selectpage.css#sha512-cRXJfA2tEcAxHEKylJfxteY17N7j9fia3waahHOVnvl63uVZT9OQ7jjjpofZMVZ4JSX3BRET+mI8UvKnsXd3NA==
+// @resource     dialogpolyfillcss https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.css#sha512-J2+1q+RsZuJXabBfH1q/fgRr6jMy9By5SwVLk7bScEW7NFJkMUXxfeOyyxtDe6fsaJ4jsciexSlGrPYn9YbBIg==
 // @license      GPL3
 // @compatible	 Chrome
 // @compatible	 Firefox
 // @compatible	 Edge
 // @incompatible safari
-// @supportURL   https://cdl.xn--920a.fun/dl/https://github.com/beijixiaohu/OJBetter/issues
+// @supportURL   https://github.com/beijixiaohu/OJBetter/issues
 // @name:zh-TW   AtCoder Better!
 // @name:en      AtCoder Better!
 // @name:de      AtCoder Better!
@@ -860,7 +854,7 @@
   * 初始化全局变量
   */
  async function initVar() {
-     const { hostname, href } = window.location;
+     const { hostname, href } = window.__location____;
      OJBetter.state.formatName = (() => OJBetter.state.name
          .toLowerCase()
          .replace(/\s+/g, '-')
@@ -869,7 +863,7 @@
      OJBetter.state.lastReadAnnounceVer = OJB_getGMValue("lastReadAnnounceVer", "0");
      OJBetter.typeOfPage.is_contest = /\/contests\/[^\/]+\/tasks\/?$/.test(href);
      OJBetter.typeOfPage.is_problem = href.includes('/tasks/');
-     OJBetter.typeOfPage.is_homepage = (href === 'https://cdl.xn--920a.fun/dl/https://atcoder.jp/' || href === 'https://cdl.xn--920a.fun/dl/https://atcoder.jp/?lang=ja');
+     OJBetter.typeOfPage.is_homepage = (href === 'https://atcoder.jp/' || href === 'https://atcoder.jp/?lang=ja');
      OJBetter.typeOfPage.isEnglishLanguage = $('meta[http-equiv="Content-Language"]').attr('content') === 'en';
      OJBetter.typeOfPage.isEditorial = href.includes("editorial");
      OJBetter.localization.websiteLang = OJB_getGMValue("localizationLanguage", "zh");
@@ -991,7 +985,7 @@
      OJBetter.preference.iconButtonSize = OJB_getGMValue("iconButtonSize", "16");
      OJBetter.dev.isRuleMarkingEnabled = OJB_getGMValue("isRuleMarkingEnabled", false);
      OJBetter.about.updateChannel = OJB_getGMValue("updateChannel", "release");
-     OJBetter.about.updateSource = OJB_getGMValue("updateSource", "greasyfork");
+     OJBetter.about.updateSource = OJB_getGMValue("updateSource", "aliyunoss");
  }
  
  /**
@@ -1212,7 +1206,7 @@
          });
  
          alert('All settings have been deleted.');
-         window.location.reload();
+         window.__location____.reload();
      }
  }
  
@@ -1259,7 +1253,7 @@
          });
  
          alert('Settings imported successfully!');
-         window.location.reload();
+         window.__location____.reload();
      }
  }
  
@@ -1729,11 +1723,11 @@
      if (OJBetter.monaco.enableOnProblemPage || OJBetter.monaco.beautifyPreBlocks) {
          try {
              // 等待Monaco Editor加载器脚本加载完成
-             await OJB_LoadJS("https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/monaco-editor/0.49.0/min/vs/loader.min.js", "sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw==");
+             await OJB_LoadJS("https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/monaco-editor/0.49.0/min/vs/loader.min.js", "sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw==");
  
              // 配置Monaco Editor
              require.config({
-                 paths: { vs: "https://cdl.xn--920a.fun/dl/https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/monaco-editor/0.49.0/min/vs" },
+                 paths: { vs: "https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/monaco-editor/0.49.0/min/vs" },
                  "vs/nls": { availableLanguages: { "*": "zh-cn" } },
              });
  
@@ -1933,7 +1927,7 @@
      flex-wrap: wrap;
      justify-content: flex-end;
      overflow: auto;
-     height: 100%;
+     height: auto;
      margin: 0.5em;
  }
  
@@ -3911,8 +3905,8 @@
  function OJB_cleanLink(url) {
      if (url === null || url === undefined) return "";
  
-     // 替换'http://'为'https://cdl.xn--920a.fun/dl/https://'
-     let cleanUrl = url.replace(/^http:\/\//i, 'https://cdl.xn--920a.fun/dl/https://');
+     // 替换'http://'为'https://'
+     let cleanUrl = url.replace(/^http:\/\//i, 'https://');
  
      // 移除末尾的斜杠
      cleanUrl = cleanUrl.replace(/\/$/, '');
@@ -4309,7 +4303,7 @@
      Object.keys(localStorage)
          .filter(key => key.startsWith('i18next_res_'))
          .forEach(key => localStorage.removeItem(key));
-     window.location.reload();
+     window.__location____.reload();
  }
  
  /**
@@ -4318,7 +4312,7 @@
  async function clearWebsiteL10nData() {
      OJBetter.common.database.localizeSubsData.clear().then(() => {
          console.log('localizeSubsData table has been cleared');
-         window.location.reload();
+         window.__location____.reload();
      }).catch((error) => {
          console.error('Failed to clear localizeSubsData table:', error);
      });
@@ -4422,17 +4416,17 @@
      try {
          const versionResponse = await OJB_GMRequest({
              method: "GET",
-             url: "https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/script/versions.json",
+             url: "https://aowuucdn.oss-accelerate.aliyuncs.com/script/versions.json",
              timeout: 10 * 1e3,
              nocache: true
          });
          const versionData = JSON.parse(versionResponse.responseText);
          const { [OJBetter.state.formatName]: { dev: version_dev, release: version_release } } = versionData;
          const baseUrls = {
-             // greasyfork: 'https://cdl.xn--920a.fun/dl/https://update.greasyfork.org/scripts/465777/Codeforces%20Better%21.user.js',
+             // greasyfork: 'https://update.greasyfork.org/scripts/465777/Codeforces%20Better%21.user.js',
              greasyfork: 'https://update.greasyfork.org/scripts/471106/Atcoder%20Better%21.user.js',
-             github: `https://cdl.xn--920a.fun/dl/https://github.com/beijixiaohu/OJBetter/raw/main/script/${OJBetter.about.updateChannel}/${OJBetter.state.formatName}.user.js`,
-             aliyunoss: `https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/script/${OJBetter.about.updateChannel}/${OJBetter.state.formatName}.user.js`
+             github: `https://github.com/beijixiaohu/OJBetter/raw/main/script/${OJBetter.about.updateChannel}/${OJBetter.state.formatName}.user.js`,
+             aliyunoss: `https://aowuucdn.oss-accelerate.aliyuncs.com/script/${OJBetter.about.updateChannel}/${OJBetter.state.formatName}.user.js`
          };
          /** @type {string} 更新跳转url */
          const updateUrl = baseUrls[OJBetter.about.updateSource];
@@ -4452,7 +4446,7 @@
              );
  
              if (updateConfirmed) {
-                 window.location.href = updateUrl;
+                 window.__location____.href = updateUrl;
              } else {
                  document.cookie = "skipUpdate=true; path=/";
              }
@@ -4617,8 +4611,8 @@
  async function getLocalizeWebsiteJson(localizationLanguage) {
      let data = await OJBetter.common.database.localizeSubsData.get(localizationLanguage);
      let url = localizationLanguage === "zh" ?
-         `https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/resources/subs/${OJBetter.state.formatName}.json` :
-         `https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/i18n/${localizationLanguage}/resources/subs/${OJBetter.state.formatName}.json`;
+         `https://aowuucdn.oss-accelerate.aliyuncs.com/resources/subs/${OJBetter.state.formatName}.json` :
+         `https://aowuucdn.oss-accelerate.aliyuncs.com/i18n/${localizationLanguage}/resources/subs/${OJBetter.state.formatName}.json`;
      if (data) data = data.data;
      if (!data) {
          // 如果本地没有数据，从远端获取并保存
@@ -4852,6 +4846,304 @@
      // }
  };
  
+ // i18next 本地缓存
+ const i18nextLocalStorageBackend = (function () {
+     class Storage {
+         constructor(options) {
+             this.store = options.store;
+         }
+ 
+         setItem(key, value) {
+             if (this.store) {
+                 try {
+                     this.store.setItem(key, value);
+                 } catch (e) {
+                     // 存储失败时静默处理
+                 }
+             }
+         }
+ 
+         getItem(key) {
+             if (this.store) {
+                 try {
+                     return this.store.getItem(key);
+                 } catch (e) {
+                     // 获取失败时静默处理
+                 }
+             }
+             return undefined;
+         }
+     }
+ 
+     function getDefaults() {
+         let store = null;
+         try {
+             store = window.localStorage;
+         } catch (e) {
+             if (typeof window !== 'undefined') {
+                 console.log('Failed to load local storage.', e);
+             }
+         }
+         return {
+             prefix: 'i18next_res_',
+             expirationTime: 7 * 24 * 60 * 60 * 1000,
+             defaultVersion: undefined,
+             versions: {},
+             store: store
+         };
+     }
+ 
+     class Cache {
+         constructor(services, options = {}) {
+             this.init(services, options);
+             this.type = 'backend';
+         }
+ 
+         init(services, options = {}) {
+             this.services = services;
+             this.options = { ...getDefaults(), ...this.options, ...options };
+             this.storage = new Storage(this.options);
+         }
+ 
+         read(language, namespace, callback) {
+             const nowMS = Date.now();
+             if (!this.storage.store) {
+                 return callback(null, null);
+             }
+ 
+             const local = this.storage.getItem(`${this.options.prefix}${language}-${namespace}`);
+             if (local) {
+                 const parsed = JSON.parse(local);
+                 const version = this.getVersion(language);
+ 
+                 if (parsed.i18nStamp &&
+                     parsed.i18nStamp + this.options.expirationTime > nowMS &&
+                     version === parsed.i18nVersion) {
+                     const i18nStamp = parsed.i18nStamp;
+                     delete parsed.i18nVersion;
+                     delete parsed.i18nStamp;
+                     return callback(null, parsed, i18nStamp);
+                 }
+             }
+ 
+             return callback(null, null);
+         }
+ 
+         save(language, namespace, data) {
+             if (this.storage.store) {
+                 data.i18nStamp = Date.now();
+ 
+                 const version = this.getVersion(language);
+                 if (version) {
+                     data.i18nVersion = version;
+                 }
+ 
+                 this.storage.setItem(
+                     `${this.options.prefix}${language}-${namespace}`,
+                     JSON.stringify(data)
+                 );
+             }
+         }
+ 
+         getVersion(language) {
+             return this.options.versions[language] || this.options.defaultVersion;
+         }
+     }
+ 
+     Cache.type = 'backend';
+     return Cache;
+ })();
+ 
+ // i18next 后端链
+ const i18nextChainedBackend = (function () {
+     'use strict';
+ 
+     const arr = [];
+     const each = arr.forEach;
+     const slice = arr.slice;
+ 
+     function defaults(obj) {
+         each.call(slice.call(arguments, 1), function (source) {
+             if (source) {
+                 for (var prop in source) {
+                     if (obj[prop] === undefined) obj[prop] = source[prop];
+                 }
+             }
+         });
+         return obj;
+     }
+ 
+     function createClassOnDemand(ClassOrObject) {
+         if (!ClassOrObject) return null;
+         if (typeof ClassOrObject === 'function') return new ClassOrObject();
+         return ClassOrObject;
+     }
+ 
+     function getDefaults() {
+         return {
+             handleEmptyResourcesAsFailed: true,
+             cacheHitMode: 'none'
+         };
+     }
+ 
+     function handleCorrectReadFunction(backend, language, namespace, resolver) {
+         const fc = backend.read.bind(backend);
+         if (fc.length === 2) {
+             try {
+                 const r = fc(language, namespace);
+                 if (r && typeof r.then === 'function') {
+                     r.then(function (data) {
+                         return resolver(null, data);
+                     }).catch(resolver);
+                 } else {
+                     resolver(null, r);
+                 }
+             } catch (err) {
+                 resolver(err);
+             }
+             return;
+         }
+         fc(language, namespace, resolver);
+     }
+ 
+     class Backend {
+         constructor(services, options = {}, i18nextOptions = {}) {
+             this.backends = [];
+             this.type = 'backend';
+             this.allOptions = i18nextOptions;
+             this.init(services, options);
+         }
+ 
+         init(services, options = {}, i18nextOptions = {}) {
+             this.services = services;
+             this.options = defaults(options, this.options || {}, getDefaults());
+             this.allOptions = i18nextOptions;
+ 
+             this.options.backends && this.options.backends.forEach((b, i) => {
+                 this.backends[i] = this.backends[i] || createClassOnDemand(b);
+                 this.backends[i].init(services, this.options.backendOptions && this.options.backendOptions[i] || {}, i18nextOptions);
+             });
+ 
+             if (this.services && this.options.reloadInterval) {
+                 setInterval(() => this.reload(), this.options.reloadInterval);
+             }
+         }
+ 
+         read(language, namespace, callback) {
+             const bLen = this.backends.length;
+ 
+             const loadPosition = (pos) => {
+                 if (pos >= bLen) return callback(new Error('non of the backend loaded data', true));
+                 const isLastBackend = pos === bLen - 1;
+                 const lengthCheckAmount = this.options.handleEmptyResourcesAsFailed && !isLastBackend ? 0 : -1;
+                 const backend = this.backends[pos];
+ 
+                 if (backend.read) {
+                     handleCorrectReadFunction(backend, language, namespace, (err, data, savedAt) => {
+                         if (!err && data && Object.keys(data).length > lengthCheckAmount) {
+                             callback(null, data, pos);
+                             savePosition(pos - 1, data);
+ 
+                             if (backend.save && this.options.cacheHitMode && ['refresh', 'refreshAndUpdateStore'].indexOf(this.options.cacheHitMode) > -1) {
+                                 if (savedAt && this.options.refreshExpirationTime && savedAt + this.options.refreshExpirationTime > Date.now()) return;
+                                 const nextBackend = this.backends[pos + 1];
+                                 if (nextBackend && nextBackend.read) {
+                                     handleCorrectReadFunction(nextBackend, language, namespace, (err, data) => {
+                                         if (err) return;
+                                         if (!data) return;
+                                         if (Object.keys(data).length <= lengthCheckAmount) return;
+                                         savePosition(pos, data);
+                                         if (this.options.cacheHitMode !== 'refreshAndUpdateStore') return;
+                                         if (this.services && this.services.resourceStore) {
+                                             this.services.resourceStore.addResourceBundle(language, namespace, data);
+                                         }
+                                     });
+                                 }
+                             }
+                         } else {
+                             loadPosition(pos + 1);
+                         }
+                     });
+                 } else {
+                     loadPosition(pos + 1);
+                 }
+             };
+ 
+             const savePosition = (pos, data) => {
+                 if (pos < 0) return;
+                 const backend = this.backends[pos];
+                 if (backend.save) {
+                     backend.save(language, namespace, data);
+                     savePosition(pos - 1, data);
+                 } else {
+                     savePosition(pos - 1, data);
+                 }
+             };
+ 
+             loadPosition(0);
+         }
+ 
+         create(languages, namespace, key, fallbackValue, clb = () => { }, opts = {}) {
+             this.backends.forEach(b => {
+                 if (!b.create) return;
+                 const fc = b.create.bind(b);
+                 if (fc.length < 6) {
+                     try {
+                         let r;
+                         if (fc.length === 5) {
+                             r = fc(languages, namespace, key, fallbackValue, opts);
+                         } else {
+                             r = fc(languages, namespace, key, fallbackValue);
+                         }
+                         if (r && typeof r.then === 'function') {
+                             r.then(data => clb(null, data)).catch(clb);
+                         } else {
+                             clb(null, r);
+                         }
+                     } catch (err) {
+                         clb(err);
+                     }
+                     return;
+                 }
+                 fc(languages, namespace, key, fallbackValue, clb, opts);
+             });
+         }
+ 
+         reload() {
+             const { backendConnector, languageUtils, logger } = this.services;
+             const currentLanguage = backendConnector.language;
+ 
+             if (currentLanguage && currentLanguage.toLowerCase() === 'cimode') return;
+ 
+             const toLoad = [];
+             const append = (lng) => {
+                 const lngs = languageUtils.toResolveHierarchy(lng);
+                 lngs.forEach(l => {
+                     if (toLoad.indexOf(l) < 0) toLoad.push(l);
+                 });
+             };
+ 
+             append(currentLanguage);
+             if (this.allOptions.preload) this.allOptions.preload.forEach(l => append(l));
+ 
+             toLoad.forEach(lng => {
+                 this.allOptions.ns.forEach(ns => {
+                     backendConnector.read(lng, ns, 'read', null, null, (err, data) => {
+                         if (err) logger.warn(`loading namespace ${ns} for language ${lng} failed`, err);
+                         if (!err && data) logger.log(`loaded namespace ${ns} for language ${lng}`, data);
+                         backendConnector.loaded(`${lng}|${ns}`, err, data);
+                     });
+                 });
+             });
+         }
+     }
+ 
+     Backend.type = 'backend';
+ 
+     return Backend;
+ })();
+ 
+ 
  /**
   * i18next初始化
   */
@@ -4881,9 +5173,9 @@
                          /* options for secondary backend */
                          loadPath: (lng, ns) => {
                              if (lng[0] === 'zh' || lng[0] === 'zh-Hans') {
-                                 return `https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/resources/locales/${OJBetter.state.formatName}/${ns}.json`;
+                                 return `https://aowuucdn.oss-accelerate.aliyuncs.com/resources/locales/${OJBetter.state.formatName}/${ns}.json`;
                              }
-                             return `https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/i18n/${lng}/resources/locales/${OJBetter.state.formatName}/${ns}.json`;
+                             return `https://aowuucdn.oss-accelerate.aliyuncs.com/i18n/${lng}/resources/locales/${OJBetter.state.formatName}/${ns}.json`;
                          }
                      }]
                  }
@@ -6134,7 +6426,7 @@
      <div class='versionInfo'>
          <p>${OJBetter.state.name}</p>
          <p><span data-i18n="settings:about.version"></span><span id="nowVersion">${OJBetter.state.version}</span></p>
-         <p> @北极小狐 <a target="_blank" href="https://cdl.xn--920a.fun/dl/https://github.com/beijixiaohu/OJBetter">Github</a>
+         <p> @北极小狐 <a target="_blank" href="https://github.com/beijixiaohu/OJBetter">Github</a>
          <a target="_blank" href="https://greasyfork.org/zh-CN/scripts/465777">GreasyFork</a></p>
      </div>
      <hr>
@@ -6160,9 +6452,9 @@
              <div class="tip_text" data-i18n="[html]settings:about.update.source.helpText"></div>
          </div>
          <select id="updateSource" name="updateSource">
+             <option value="aliyunoss" data-i18n="settings:about.update.source.options.aliyunoss"></option>
              <option value="greasyfork" data-i18n="settings:about.update.source.options.greasyfork"></option>
              <option value="github" data-i18n="settings:about.update.source.options.github"></option>
-             <option value="aliyunoss" data-i18n="settings:about.update.source.options.aliyunoss"></option>
          </select>
      </div>
  </div>
@@ -6405,7 +6697,7 @@
                      </div>
                  </div>
              </label>
-             <input type='text' id='chatgpt_proxy' placeholder='https://cdl.xn--920a.fun/dl/https://api.openai.com/v1/chat/completions' require = false>
+             <input type='text' id='chatgpt_proxy' placeholder='https://api.openai.com/v1/chat/completions' require = false>
          </div>
          <hr>
          <details>
@@ -8471,7 +8763,7 @@
  
  // 更新TransDB中的翻译数据
  async function updateTransDBData(nodeDate, transResultMap) {
-     var url = window.location.href.replace(/#/, "");
+     var url = window.__location____.href.replace(/#/, "");
      try {
          await OJBetter.common.database.translateData.put({ url, transResultMap, nodeDate });
          return 'translateData saved successfully';
@@ -8482,7 +8774,7 @@
  
  // 获取TransDB中保存的翻译数据
  async function getTransDBData() {
-     var url = window.location.href.replace(/#/, "");
+     var url = window.__location____.href.replace(/#/, "");
      try {
          const result = await OJBetter.common.database.translateData.get(url);
          return result;
@@ -8904,7 +9196,7 @@
  async function SelectElementPerfOpt() {
      // TODO 10
      // 加载库资源
-     await OJB_LoadJS("https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/js/selectpage.min.js", "sha512-HhBheWc9nbTuTG0oVYtY9c3nkJAAiuk899lycOtB8NALvp20CNOjlYdTAYbRy9/0zXnLl0LZpiwhfLZurvK1XQ==");
+     await OJB_LoadJS("https://aowuucdn.oss-accelerate.aliyuncs.com/js/selectpage.min.js", "sha512-HhBheWc9nbTuTG0oVYtY9c3nkJAAiuk899lycOtB8NALvp20CNOjlYdTAYbRy9/0zXnLl0LZpiwhfLZurvK1XQ==");
      /**
       * 将一个<select>元素转换为SelectPage控件
       * @param {HTMLElement|string} selector - 要转换的<select>元素或其选择器
@@ -9088,13 +9380,13 @@
   * @param {ProblemPageLinkbar} problemToolbar
   */
  async function CF2luogu(problemToolbar) {
-     const url = window.location.href;
+     const url = window.__location____.href;
      const problemId = getProblemId(url);
      const luoguButton = problemToolbar.addLinkButton(
          "luoguButton",
          "https://www.luogu.com.cn/",
          i18next.t('state.loading', { ns: 'button' }),
-         $("<img>").attr("src", "https://cdl.xn--920a.fun/dl/https://cdn.luogu.com.cn/fe/logo.png")
+         $("<img>").attr("src", "https://cdn.luogu.com.cn/fe/logo.png")
      );
  
      const checkLinkExistence = async (url) => {
@@ -9133,13 +9425,13 @@
   * @param {ProblemPageLinkbar} problemToolbar
   */
  async function CF2vjudge(problemToolbar) {
-     const url = window.location.href;
+     const url = window.__location____.href;
      const problemId = getProblemId(url);
      const vjudgeButton = problemToolbar.addLinkButton(
          "vjudgeButton",
          "https://vjudge.net/",
          i18next.t('state.loading', { ns: 'button' }),
-         $("<img>").attr("src", "https://cdl.xn--920a.fun/dl/https://aowuucdn.oss-accelerate.aliyuncs.com/vjudge.ico")
+         $("<img>").attr("src", "https://aowuucdn.oss-accelerate.aliyuncs.com/vjudge.ico")
      );
  
      const checkLinkExistence = async (url) => {
@@ -9209,7 +9501,7 @@
   * @returns {Promise<boolean>} 是否有效
   */
  async function validateClistConnection(onlyCookie = false) {
-     const clistApiUrl = "https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/contest/?limit=1&resource_id=1";
+     const clistApiUrl = "https://clist.by:443/api/v4/contest/?limit=1&resource_id=1";
      const requestOptions = {
          method: "GET",
          url: clistApiUrl,
@@ -9298,7 +9590,7 @@
          const queryString = `search=${encodeURIComponent(problem)}&resource=1`;
          const response = await OJB_GMRequest({
              method: 'GET',
-             url: `https://cdl.xn--920a.fun/dl/https://clist.by/problems/?${queryString}`,
+             url: `https://clist.by/problems/?${queryString}`,
          });
  
          if (!response.responseText) throw new OJB_GMError('network', 'An unknown network error occurred!', response);
@@ -9354,8 +9646,8 @@
      return OJB_promiseRetryWrapper(async () => {
          const response = await OJB_GMRequest({
              method: "GET",
-             // url: `https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/problem/?name=${encodeURIComponent(problem_name)}&resource__regex=codeforces.com`,
-             url: `https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/problem/?url__regex=${encodeURIComponent(problem_name)}&resource__regex=atcoder.jp`,
+             // url: `https://clist.by:443/api/v4/problem/?name=${encodeURIComponent(problem_name)}&resource__regex=codeforces.com`,
+             url: `https://clist.by:443/api/v4/problem/?url__regex=${encodeURIComponent(problem_name)}&resource__regex=atcoder.jp`,
              headers: { "Authorization": OJBetter.clist.authorization }
          });
  
@@ -9431,8 +9723,8 @@
      return OJB_promiseRetryWrapper(async () => {
          const options = {
              method: "GET",
-             // url: `https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/contest/?resource_id=1&event__regex=${encodeURIComponent(contestName)}`,
-             url: `https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/contest/?resource_id=93&event__regex=${encodeURIComponent(contestName)}`,
+             // url: `https://clist.by:443/api/v4/contest/?resource_id=1&event__regex=${encodeURIComponent(contestName)}`,
+             url: `https://clist.by:443/api/v4/contest/?resource_id=93&event__regex=${encodeURIComponent(contestName)}`,
              headers: {
                  "Authorization": OJBetter.clist.authorization
              }
@@ -9498,7 +9790,7 @@
      return OJB_promiseRetryWrapper(async () => {
          const options = {
              method: "GET",
-             url: `https://cdl.xn--920a.fun/dl/https://clist.by:443/api/v4/contest/?resource_id=93&with_problems=true&event=${encodeURIComponent(actualContestName)}`,
+             url: `https://clist.by:443/api/v4/contest/?resource_id=93&with_problems=true&event=${encodeURIComponent(actualContestName)}`,
              headers: {
                  "Authorization": OJBetter.clist.authorization
              }
@@ -9555,7 +9847,7 @@
      // 题目名
      // const problem = $('.header .title').eq(0).text().replace(/[\s\S]*?. /, '');
      // if (OJBetter.typeOfPage.is_acmsguru) problem = $('h4').eq(0).text().replace(/[\s\S]*?. /, '');
-     const url = window.location.href;
+     const url = window.__location____.href;
      const problemId = getProblemId(url);
  
      // 创建Rating按钮元素
@@ -9563,16 +9855,16 @@
      // TODO
      // const clistButton = problemToolbar.addLinkButton(
      //     'clistButton',
-     //     `https://cdl.xn--920a.fun/dl/https://clist.by/problems/?search=${problem}&resource=1`,
+     //     `https://clist.by/problems/?search=${problem}&resource=1`,
      //     i18next.t('state.wait', { ns: 'button' }),
-     //     $("<img>").attr("src", "https://cdl.xn--920a.fun/dl/https://clist.by/static/img/logo-48.png"),
+     //     $("<img>").attr("src", "https://clist.by/static/img/logo-48.png"),
      //     "15px"
      // );
      const clistButton = problemToolbar.addLinkButton(
          'clistButton',
-         `https://cdl.xn--920a.fun/dl/https://clist.by/problems/?search=${problemId}&resource=93`,
+         `https://clist.by/problems/?search=${problemId}&resource=93`,
          i18next.t('state.wait', { ns: 'button' }),
-         $("<img>").attr("src", "https://cdl.xn--920a.fun/dl/https://clist.by/static/img/logo-48.png"),
+         $("<img>").attr("src", "https://clist.by/static/img/logo-48.png"),
          "15px"
      );
  
@@ -9583,7 +9875,7 @@
      }
  
      // 题目链接
-     let problem_url = window.location.href;
+     let problem_url = window.__location____.href;
      if (problem_url.includes('/contest/')) {
          problem_url = problem_url.replace(/\/contest\/(\d+)\/problem\/(\w+)[^\w]*/, '/contest/$1/problem/$2');
      } else {
@@ -9617,13 +9909,13 @@
      creatRatingCss();
      let ratingBadges = {};
      // $('.datatable .id.left').each(function () {
-     //     let href = 'https://cdl.xn--920a.fun/dl/https://codeforces.com' + $(this).find('a').attr('href');
+     //     let href = 'https://codeforces.com' + $(this).find('a').attr('href');
      //     let badge = OJB_safeCreateJQElement(`<a id="clistButton" class="ratingBadge">${i18next.t('state.wait', { ns: 'button' })}</a>`);
      //     $(this).find('a').after(badge);
      //     ratingBadges[href] = badge;
      // });
      $('table tbody tr').each(function () {
-         let href = 'https://cdl.xn--920a.fun/dl/https://atcoder.jp' + $(this).find('a').attr('href');
+         let href = 'https://atcoder.jp' + $(this).find('a').attr('href');
          let badge = OJB_safeCreateJQElement(`<a id="clistButton" class="ratingBadge">${i18next.t('state.wait', { ns: 'button' })}</a>`);
          $(this).find('a:first').after(badge);
          ratingBadges[href] = badge;
@@ -9644,9 +9936,9 @@
  
      // 获取Rating
      // let contestName = $('#sidebar').children().first().find('.rtable th').first().text();
-     let contestName = window.location.href.match(/\/contests\/[^\/]*?(\d+)\/tasks/)?.[1];
-     // let contestUrl = OJB_cleanLink(window.location.href);
-     let contestUrl = OJB_cleanLink(window.location.href.replace(/\/tasks\/?.*$/, ''));
+     let contestName = window.__location____.href.match(/\/contests\/[^\/]*?(\d+)\/tasks/)?.[1];
+     // let contestUrl = OJB_cleanLink(window.__location____.href);
+     let contestUrl = OJB_cleanLink(window.__location____.href.replace(/\/tasks\/?.*$/, ''));
      try {
          let problemsMap = await getRatingFromApi_contest(contestName, contestUrl);
  
@@ -9685,7 +9977,7 @@
          const $firstDiv = $($tds[1]).find('div:first');
          let problem = $firstDiv.text();
          let problem_url = $firstDiv.find('a').attr('href');
-         problem_url = problem_url.replace(/^\/problemset\/problem\/(\d+)\/(\w+)/, 'https://cdl.xn--920a.fun/dl/https://codeforces.com/contest/$1/problem/$2');
+         problem_url = problem_url.replace(/^\/problemset\/problem\/(\d+)\/(\w+)/, 'https://codeforces.com/contest/$1/problem/$2');
  
          const ratingBadge = OJB_safeCreateJQElement(`<a id="clistButton" class="ratingBadge"></a>`);
          const rating = OJB_safeCreateJQElement(`<span class="rating">${i18next.t('state.wait', { ns: 'button' })}</span>`);
@@ -9732,8 +10024,8 @@
  
  async function ShowSameContestProblems() {
      // 获取当前页面的URL信息
-     const url = window.location.href;
-     const match_ = url.match("https://cdl.xn--920a.fun/dl/https://atcoder.jp/contests/[a-z0-9]*/tasks/");
+     const url = window.__location____.href;
+     const match_ = url.match("https://atcoder.jp/contests/[a-z0-9]*/tasks/");
      const match = match_[0];
      if (!match_) {
          console.error('URL不匹配');
@@ -9753,7 +10045,7 @@
      select.style.display = 'block';
  
      // 异步请求获取所有题目链接
-     fetch(`https://cdl.xn--920a.fun/dl/https://atcoder.jp/contests/${contestId}/tasks`)
+     fetch(`https://atcoder.jp/contests/${contestId}/tasks`)
          .then(response => {
              if (!response.ok) {
                  console.log('获取任务页面失败');
@@ -9920,7 +10212,7 @@
      //     let matchResult = problemCode.match(/([A-Z0-9]+)/);
      //     problemCode = matchResult[0];
      // } else if (OJBetter.typeOfPage.is_problemset_problem) {
-     //     let match = window.location.href.match(/\/problem\/([0-9]+?)\/([A-Za-z0-9]+?)(?!=[A-Za-z0-9])/);
+     //     let match = window.__location____.href.match(/\/problem\/([0-9]+?)\/([A-Za-z0-9]+?)(?!=[A-Za-z0-9])/);
      //     problemCode = match[1] + match[2];
      //     selectProblem.attr('name', 'submittedProblemCode');
      // } else {
@@ -10559,7 +10851,7 @@
  
          // 代码同步与保存
          if (OJBetter.monaco.setting.autoMemoryCode) {
-             let nowUrl = window.location.href;
+             let nowUrl = window.__location____.href;
              nowUrl = nowUrl.replace(/#/, ""); // 当页面存在更改时url会多出一个#，去掉
              const code = await getCode(nowUrl);
              if (code) {
@@ -11928,7 +12220,7 @@
  
  // 初始化自定义测试数据面板
  function CustomTestInit() {
-     const url = window.location.href;
+     const url = window.__location____.href;
  
      restoreText();
  
@@ -12020,7 +12312,7 @@
  
  // 获取自定义测试数据
  function getCustomTestData() {
-     const url = window.location.href;
+     const url = window.__location____.href;
  
      return new Promise(function (resolve) {
          var customTestData = {};
@@ -12129,7 +12421,7 @@
      // };
      const requestOptions = {
          method: 'GET',
-         url: `https://cdl.xn--920a.fun/dl/https://atcoder.jp/contests/arc172/custom_test/json?reload=true`,
+         url: `https://atcoder.jp/contests/arc172/custom_test/json?reload=true`,
      };
  
      const responseDetails = await OJB_GMRequest(requestOptions);
@@ -12220,7 +12512,7 @@
  
      const responseDetails = await OJB_GMRequest({
          method: 'POST',
-         url: 'https://cdl.xn--920a.fun/dl/https://rextester.com/rundotnet/Run',
+         url: 'https://rextester.com/rundotnet/Run',
          data: data
      });
  
@@ -12390,7 +12682,7 @@
  
      const responseDetails = await OJB_GMRequest({
          method: 'POST',
-         url: 'https://cdl.xn--920a.fun/dl/https://wandbox.org/api/compile.json',
+         url: 'https://wandbox.org/api/compile.json',
          data: JSON.stringify(data),
          headers: {
              'Content-Type': 'application/json'
@@ -12979,9 +13271,17 @@
          const result = await onlineCompilerConnect(sourceDiv.val(), data.input);
  
          if (result.Errors) {
-             testCase.setStatus('Compilation error or Time limit', 'error');
-             testCase.setContent(result.Errors, TestCaseContentType.TERMINAL);
-             hasError = true;
+             if (result.Errors === "Verdict not ready, retrying...") {
+                 testCase.setStatus(
+                     "Server communication timeout. Judge service may be busy.",
+                     "error"
+                 );
+                 hasError = true;
+             } else {
+                 testCase.setStatus("Compilation error or Time limit", "error");
+                 testCase.setContent(result.Errors, TestCaseContentType.TERMINAL);
+                 hasError = true;
+             }
          } else {
              const resultCheck = judgeResultValidate(data.output, result.Result);
              testCase.setJudgeChecker(resultCheck.message);
@@ -13042,7 +13342,7 @@
      // }
  
      // 获取提交页链接
-     const href = window.location.href;
+     const href = window.__location____.href;
      let submitUrl = OJBetter.common.hostAddress + $('.form-code-submit').attr('action');
      // if (/\/problemset\//.test(href)) {
      //     // problemset
@@ -13200,13 +13500,13 @@
      }
      const options = {
          method: 'POST',
-         url: 'https://cdl.xn--920a.fun/dl/https://www2.deepl.com/jsonrpc',
+         url: 'https://www2.deepl.com/jsonrpc',
          data: postData,
          headers: {
              'Content-Type': 'application/json',
              'Host': 'www2.deepl.com',
-             'Origin': 'https://cdl.xn--920a.fun/dl/https://www.deepl.com',
-             'Referer': 'https://cdl.xn--920a.fun/dl/https://www.deepl.com/',
+             'Origin': 'https://www.deepl.com',
+             'Referer': 'https://www.deepl.com/',
          },
          anonymous: true,
          nocache: true,
@@ -13242,7 +13542,7 @@
  
      const options = {
          method: "POST",
-         url: OJBetter.deepl.config.proxy || "https://cdl.xn--920a.fun/dl/https://api-free.deepl.com/v2/translate",
+         url: OJBetter.deepl.config.proxy || "https://api-free.deepl.com/v2/translate",
          headers: {
              "Authorization": `DeepL-Auth-Key ${OJBetter.deepl.config.key}`,
              "Content-Type": "application/json",
@@ -13272,7 +13572,7 @@
  
      const options = {
          method: "POST",
-         url: OJBetter.deepl.config.proxy || "https://cdl.xn--920a.fun/dl/https://api.deepl.com/v2/translate",
+         url: OJBetter.deepl.config.proxy || "https://api.deepl.com/v2/translate",
          headers: {
              "Authorization": `DeepL-Auth-Key ${OJBetter.deepl.config.key}`,
              "Content-Type": "application/json",
@@ -13294,7 +13594,7 @@
  async function translate_deeplx(text) {
      const options = {
          method: "POST",
-         url: OJBetter.deepl.config.proxy || 'https://cdl.xn--920a.fun/dl/https://api.deeplx.org/translate',
+         url: OJBetter.deepl.config.proxy || 'https://api.deeplx.org/translate',
          data: JSON.stringify({
              "text": text,
              "source_lang": "EN",
@@ -13335,7 +13635,7 @@
  async function translate_iflyrec(text) {
      const options = {
          method: "POST",
-         url: 'https://cdl.xn--920a.fun/dl/https://www.iflyrec.com/TranslationService/v1/textTranslation',
+         url: 'https://www.iflyrec.com/TranslationService/v1/textTranslation',
          data: JSON.stringify({
              "from": "2",
              "to": getTargetLanguage('iflyrec'),
@@ -13347,7 +13647,7 @@
          anonymous: true,
          headers: {
              'Content-Type': 'application/json',
-             'Origin': 'https://cdl.xn--920a.fun/dl/https://www.iflyrec.com',
+             'Origin': 'https://www.iflyrec.com',
          },
          responseType: "json",
      };
@@ -13422,11 +13722,11 @@
          }
          const options = {
              method: "GET",
-             url: `https://cdl.xn--920a.fun/dl/https://dict.youdao.com/webtranslate/key?${new URLSearchParams(urlData)}`,
+             url: `https://dict.youdao.com/webtranslate/key?${new URLSearchParams(urlData)}`,
              headers: {
                  Accept: "application/json, text/plain, */*",
-                 Origin: "https://cdl.xn--920a.fun/dl/https://fanyi.youdao.com",
-                 Referer: "https://cdl.xn--920a.fun/dl/https://fanyi.youdao.com/",
+                 Origin: "https://fanyi.youdao.com",
+                 Referer: "https://fanyi.youdao.com/",
              },
          };
          const response = await OJB_GMRequest(options);
@@ -13529,7 +13829,7 @@
      };
      const options = {
          method: "POST",
-         url: "https://cdl.xn--920a.fun/dl/https://dict.youdao.com/webtranslate",
+         url: "https://dict.youdao.com/webtranslate",
          data: new URLSearchParams(data),
          anonymous: true,
          cookie: getcookie,
@@ -13537,7 +13837,7 @@
              "Accept": "application/json, text/plain, */*",
              'Sec-Fetch-Site': 'same-site',
              "Content-Type": "application/x-www-form-urlencoded",
-             Referer: "https://cdl.xn--920a.fun/dl/https://fanyi.youdao.com/",
+             Referer: "https://fanyi.youdao.com/",
          },
      };
      return await BaseTranslate(options, (res) => {
@@ -13556,7 +13856,7 @@
      const params = `tl=${getTargetLanguage('google')}&q=${encodeURIComponent(raw)}`;
      const options = {
          method: "GET",
-         url: `https://cdl.xn--920a.fun/dl/https://translate.google.com/m?${params}`,
+         url: `https://translate.google.com/m?${params}`,
      }
      return await BaseTranslate(options,
          res => $(res).filter('.result-container').text() || $(res).find('.result-container').text());
@@ -13574,11 +13874,11 @@
      const caiyun_jwt = await (async () => {
          const options = {
              method: "POST",
-             url: 'https://cdl.xn--920a.fun/dl/https://api.interpreter.caiyunai.com/v1/user/jwt/generate',
+             url: 'https://api.interpreter.caiyunai.com/v1/user/jwt/generate',
              headers: {
                  "content-type": "application/json",
                  "x-authorization": "token:qgemv4jr1y38jyq6vhvi",
-                 "origin": "https://cdl.xn--920a.fun/dl/https://fanyi.caiyunapp.com",
+                 "origin": "https://fanyi.caiyunapp.com",
              },
              data: JSON.stringify({ browser_id }),
          }
@@ -13596,7 +13896,7 @@
  
      const options = {
          method: "POST",
-         url: 'https://cdl.xn--920a.fun/dl/https://api.interpreter.caiyunai.com/v1/translator',
+         url: 'https://api.interpreter.caiyunai.com/v1/translator',
          data: JSON.stringify({
              "source": raw.split('\n'),
              "browser_id": browser_id,
@@ -13635,17 +13935,20 @@
              prompt += `\n${raw}`;
          };
      } else {
-         prompt = `
- As a professional English translator, your task is to accurately translate a segment of an algorithm programming competition question into ${lang}.
- The translation should use professional terms and maintain the text format, including ${OJBetter.typeOfPage.is_oldLatex || OJBetter.typeOfPage.is_acmsguru
-                 ? "keeping the LaTeX equations unchanged."
-                 : "keeping the brackets【】, HTML tags, and their content unchanged."
-             }
- After translation, please ensure that the ${lang} version conforms to normal expression habits.
- What I need is a carefully polished ${lang} translation of my question segment. ${OJBetter.chatgpt.asSystemPrompt ? '' :
-                 `The segment to be translated is as follows: "
+         prompt = `You are a professional English translator specializing in algorithm programming competitions. 
+ Translate the following text into ${lang} with precision, using appropriate technical terminology.
+ 
+ Rules:
+ 1. Output ONLY the translation, with no explanations, notes, or other text
+ 2. Maintain all original formatting
+ 3. ${OJBetter.typeOfPage.is_oldLatex || OJBetter.typeOfPage.is_acmsguru ? "Keep all LaTeX equations unchanged" : "Keep all brackets [], HTML tags, and their content unchanged"}
+ 4. Ensure the translation follows natural ${lang} expression patterns
+ 5. Use professional terminology common in programming competitions
+ 
+ Text to translate:
+ "
  ${raw}
- "`}`;
+ "`;
      };
      const data = {
          model: OJBetter.chatgpt.config.model || modelDefault,
@@ -13671,7 +13974,7 @@
      };
      const options = {
          method: "POST",
-         url: OJBetter.chatgpt.config.proxy || 'https://cdl.xn--920a.fun/dl/https://api.openai.com/v1/chat/completions',
+         url: OJBetter.chatgpt.config.proxy || 'https://api.openai.com/v1/chat/completions',
          data: JSON.stringify(data),
          responseType: 'json',
          headers: {
@@ -13739,17 +14042,20 @@
              prompt += `\n${raw}`;
          };
      } else {
-         prompt = `
- As a professional English translator, your task is to accurately translate a segment of an algorithm programming competition question into ${lang}.
- The translation should use professional terms and maintain the text format, including ${OJBetter.typeOfPage.is_oldLatex || OJBetter.typeOfPage.is_acmsguru
-                 ? "keeping the LaTeX equations unchanged."
-                 : "keeping the brackets【】, HTML tags, and their content unchanged."
-             }
- After translation, please ensure that the ${lang} version conforms to normal expression habits.
- What I need is a carefully polished ${lang} translation of my question segment. ${OJBetter.chatgpt.asSystemPrompt ? '' :
-                 `The segment to be translated is as follows: "
+         prompt = `You are a professional English translator specializing in algorithm programming competitions. 
+ Translate the following text into ${lang} with precision, using appropriate technical terminology.
+ 
+ Rules:
+ 1. Output ONLY the translation, with no explanations, notes, or other text
+ 2. Maintain all original formatting
+ 3. ${OJBetter.typeOfPage.is_oldLatex || OJBetter.typeOfPage.is_acmsguru ? "Keep all LaTeX equations unchanged" : "Keep all brackets [], HTML tags, and their content unchanged"}
+ 4. Ensure the translation follows natural ${lang} expression patterns
+ 5. Use professional terminology common in programming competitions
+ 
+ Text to translate:
+ "
  ${raw}
- "`}`;
+ "`;
      };
      const data = {
          model: OJBetter.chatgpt.config.model || modelDefault,
@@ -13776,7 +14082,7 @@
      };
      const options = {
          method: "POST",
-         url: OJBetter.chatgpt.config.proxy || 'https://cdl.xn--920a.fun/dl/https://api.openai.com/v1/chat/completions',
+         url: OJBetter.chatgpt.config.proxy || 'https://api.openai.com/v1/chat/completions',
          data: JSON.stringify(data),
          responseType: 'stream',
          headers: {
@@ -14094,7 +14400,7 @@
  // ------------------------------
  
  // ------------------------------
- // 配置自动迁移代码（将在10个小版本后移除-1.19）
+ // 配置自动迁移代码 -1.09
  // ------------------------------
  
  if (GM_getValue("openai_key") || GM_getValue("api2d_key")) {
@@ -14137,7 +14443,7 @@
  
  
  // ------------------------------
- // 配置自动迁移代码（将在10个小版本后移除-1.23）
+ // 配置自动迁移代码 -1.13
  // ------------------------------
  
  {
@@ -14169,7 +14475,7 @@
  }
  
  // ------------------------------
- // 配置自动迁移代码（将在10个小版本后移除-1.24）
+ // 配置自动迁移代码 -1.14
  // ------------------------------
  
  {
@@ -14179,6 +14485,19 @@
              GM_setValue("compilerSelection", "5001");
              location.reload();
          }
+     }
+ }
+ 
+ // ------------------------------
+ // 配置自动迁移代码 - 1.18
+ // ------------------------------
+ {
+     const config_changed = GM_getValue("config_changed_118"); // 设置一个迁移标志
+     const updateSource = GM_getValue("updateSource");
+     if (!config_changed && updateSource === 'greasyfork') {
+       GM_setValue("config_changed", true);
+       GM_setValue("updateSource", 'aliyunoss');
+       location.reload();
      }
  }
  
