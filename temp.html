@@ -6,8 +6,8 @@
 <meta property="og:description" content="暑假作业完成进度                   * {             margin: 0;             padding: 0;             box-sizing: border-box;             font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-se">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://huchangzhi.github.io/image/head.png">
-<meta property="article:published_time" content="2025-07-13T05:37:21.730Z">
-<meta property="article:modified_time" content="2025-07-13T05:37:21.730Z">
+<meta property="article:published_time" content="2025-07-13T06:27:03.631Z">
+<meta property="article:modified_time" content="2025-07-13T06:27:03.631Z">
 <meta property="article:author" content="Change">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://huchangzhi.github.io/image/head.png"><link rel="shortcut icon" href="https://huchangzhi.github.io/image/head.png"><link rel="canonical" href="https://oi.胡.fun/temp.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
@@ -161,7 +161,7 @@
         body {
             background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
             min-height: 100vh;
-            padding: 30px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -170,7 +170,7 @@
         
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             width: 100%;
             max-width: 1000px;
         }
@@ -186,6 +186,130 @@
             font-size: 1.1rem;
             color: #00838f;
             font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        /* 倒计时容器 */
+        .countdown-container {
+            background: linear-gradient(135deg, #006064, #00838f);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 105, 148, 0.3);
+            padding: 25px;
+            margin: 0 auto 30px;
+            width: 100%;
+            max-width: 1000px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .countdown-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4fb3bf, #e0f7fa);
+            animation: progress-pulse 2s infinite;
+        }
+        
+        @keyframes progress-pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .countdown-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .countdown-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .countdown-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .timer-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 100px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timer-value {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timer-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .vertical-progress {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 200px;
+        }
+        
+        .progress-title {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .progress-bg {
+            width: 30px;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-remaining {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, #4fb3bf, #e0f7fa);
+            transition: height 0.5s ease-out;
+        }
+        
+        .progress-text {
+            margin-top: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
         
         .dashboard {
@@ -387,8 +511,10 @@
             margin-top: 30px;
             color: #00838f;
             font-size: 0.9rem;
+            padding: 15px;
         }
         
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .dashboard {
                 flex-direction: column;
@@ -403,6 +529,51 @@
             .overall-stats {
                 flex-direction: column;
             }
+            
+            .countdown-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timer-item {
+                min-width: 80px;
+                padding: 12px;
+            }
+            
+            .timer-value {
+                font-size: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .countdown-timer {
+                gap: 8px;
+            }
+            
+            .timer-item {
+                min-width: 70px;
+                padding: 10px 8px;
+            }
+            
+            .timer-value {
+                font-size: 1.5rem;
+            }
+            
+            .timer-label {
+                font-size: 0.9rem;
+            }
+            
+            .progress-title {
+                font-size: 1.1rem;
+            }
+            
+            .progress-text {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -410,6 +581,42 @@
     <div class="header">
         <h1><i class="fas fa-book-open"></i> 暑假作业完成进度</h1>
         <div class="date">2025年7月13日 更新</div>
+    </div>
+    
+    <!-- 倒计时区域 -->
+    <div class="countdown-container">
+        <div class="countdown-header">
+            <h2><i class="fas fa-hourglass-half"></i> 暑假倒计时</h2>
+            <p>距离9月1日开学还有</p>
+        </div>
+        <div class="countdown-content">
+            <div class="countdown-timer">
+                <div class="timer-item">
+                    <div class="timer-value" id="days">00</div>
+                    <div class="timer-label">天</div>
+                </div>
+                <div class="timer-item">
+                    <div class="timer-value" id="hours">00</div>
+                    <div class="timer-label">小时</div>
+                </div>
+                <div class="timer-item">
+                    <div class="timer-value" id="minutes">00</div>
+                    <div class="timer-label">分钟</div>
+                </div>
+                <div class="timer-item">
+                    <div class="timer-value" id="seconds">00.0</div>
+                    <div class="timer-label">秒</div>
+                </div>
+            </div>
+            
+            <div class="vertical-progress">
+                <div class="progress-title">暑假剩余时间</div>
+                <div class="progress-bg">
+                    <div class="progress-remaining" id="summer-progress"></div>
+                </div>
+                <div class="progress-text" id="progress-percent">100%</div>
+            </div>
+        </div>
     </div>
     
     <div class="dashboard">
@@ -542,8 +749,8 @@
             
             <div class="stat-card">
                 <div class="stat-label">剩余时间</div>
-                <div class="stat-value">∞天</div>
-                <div class="stat-label">预计完成日期: 我不到呀</div>
+                <div class="stat-value" id="remaining-days">0</div>
+                <div class="stat-label">天（按9月1日开学）</div>
             </div>
         </div>
         
@@ -570,7 +777,7 @@
                 workbook: {
                     total: 50,       // 总页数
                     completed: 10,    // 已完成页数（修改这里）
-                    weight: 2        // 权重
+                    weight: 1        // 权重
                 },
                 essay: {
                     total: 3,        // 总作文数
@@ -593,12 +800,12 @@
                 checkin: {
                     total: 35,      // 总打卡次数
                     completed: 16,   // 已完成次数（修改这里）
-                    weight: 1        // 权重
+                    weight: 0.5        // 权重
                 },
                 test: {
                     total: 15,       // 总试卷数
                     completed: 1,    // 已完成试卷数（修改这里）
-                    weight: 2        // 权重
+                    weight: 3        // 权重
                 },
                 newspaper: {
                     total: 19,       // 总页数
@@ -714,13 +921,65 @@
             taskList.classList.toggle('show');
         }
         
+        // 更新倒计时
+        function updateCountdown() {
+            // 设置暑假开始和结束日期
+            const startDate = new Date(2025, 6, 1); // 2025年7月1日（月份0-11）
+            const endDate = new Date(2025, 8, 1);   // 2025年9月1日
+            const now = new Date();
+            
+            // 计算总暑假时长（毫秒）
+            const totalSummerTime = endDate - startDate;
+            
+            // 计算剩余时间（毫秒）
+            let remainingTime = endDate - now;
+            
+            // 如果暑假还没开始
+            if (now < startDate) {
+                remainingTime = totalSummerTime;
+            }
+            
+            // 如果暑假已经结束
+            if (remainingTime < 0) {
+                remainingTime = 0;
+            }
+            
+            // 计算剩余天数、小时、分钟、秒
+            const secondsTotal = remainingTime / 1000;
+            const days = Math.floor(secondsTotal / (3600 * 24));
+            const hours = Math.floor((secondsTotal % (3600 * 24)) / 3600);
+            const minutes = Math.floor((secondsTotal % 3600) / 60);
+            const seconds = (secondsTotal % 60).toFixed(1);
+            
+            // 更新倒计时显示
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(4, '0');
+            
+            // 计算暑假剩余百分比
+            const remainingPercent = (remainingTime / totalSummerTime) * 100;
+            const formattedPercent = Math.max(0, Math.min(100, remainingPercent)).toFixed(1);
+            
+            // 更新垂直进度条
+            document.getElementById('summer-progress').style.height = `${formattedPercent}%`;
+            document.getElementById('progress-percent').textContent = `${formattedPercent}%`;
+            
+            // 更新总体进度卡片的剩余天数
+            document.getElementById('remaining-days').textContent = days;
+        }
+        
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
             updateUI();
+            updateCountdown();
+            
+            // 每秒更新一次倒计时
+            setInterval(updateCountdown, 100);
         });
     </script>
 </body>
-</html></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://huchangzhi.github.io/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Change</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1031975"><i class="fas fa-envelope"></i><span>点我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果要在这个网站发布文章,请线下或线上找hcz,<a target="_blank" rel="noopener" href="https://udify.app/chat/IugHAgbm0OX7sLSt">oiAI</a>  <a target="_blank" rel="noopener" href="https://udify.app/chat/QmDHgfHuUzCESxNt">     DeepGemini</a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/14514/11/14/%E9%80%9A%E7%9F%A5/" title="通知">通知</a><time datetime="+014514-11-14T03:45:14.000Z" title="发表于 14514-11-14 11:45:14">14514-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/%E6%9A%91%E5%81%87%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E8%BF%9B%E5%BA%A6/" title="暑假作业完成进度">暑假作业完成进度</a><time datetime="2025-07-13T04:16:42.000Z" title="发表于 2025-07-13 12:16:42">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/09/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/" title="背包问题笔记">背包问题笔记</a><time datetime="2025-07-09T08:43:53.000Z" title="发表于 2025-07-09 16:43:53">2025-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/13/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AC%94%E8%AE%B0/" title="状态压缩笔记">状态压缩笔记</a><time datetime="2025-06-13T15:34:59.000Z" title="发表于 2025-06-13 23:34:59">2025-06-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="树状数组与线段树">树状数组与线段树</a><time datetime="2025-05-25T03:11:07.000Z" title="发表于 2025-05-25 11:11:07">2025-05-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%BD%AE%E9%A1%B6/" style="font-size: 1.1em; color: #999">置顶</a> <a href="/tags/%E5%91%A8%E8%B5%9B/" style="font-size: 1.1em; color: #999">周赛</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 1.5em; color: #99a9bf">小结</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.1em; color: #999">教程</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/hcz/" style="font-size: 1.3em; color: #99a1ac">hcz</a></div></div><div class="card-widget card-archives">
+</html></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://huchangzhi.github.io/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Change</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1031975"><i class="fas fa-envelope"></i><span>点我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果要在这个网站发布文章,请线下或线上找hcz,<a target="_blank" rel="noopener" href="https://udify.app/chat/IugHAgbm0OX7sLSt">oiAI</a>  <a target="_blank" rel="noopener" href="https://udify.app/chat/QmDHgfHuUzCESxNt">     DeepGemini</a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/14514/11/14/%E9%80%9A%E7%9F%A5/" title="通知">通知</a><time datetime="+014514-11-14T03:45:14.000Z" title="发表于 14514-11-14 11:45:14">14514-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/%E6%9A%91%E5%81%87%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E8%BF%9B%E5%BA%A6/" title="暑假作业完成进度">暑假作业完成进度</a><time datetime="2025-07-13T04:16:42.000Z" title="发表于 2025-07-13 12:16:42">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/09/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/" title="背包问题笔记">背包问题笔记</a><time datetime="2025-07-09T08:43:53.000Z" title="发表于 2025-07-09 16:43:53">2025-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/13/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AC%94%E8%AE%B0/" title="状态压缩笔记">状态压缩笔记</a><time datetime="2025-06-13T15:34:59.000Z" title="发表于 2025-06-13 23:34:59">2025-06-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="树状数组与线段树">树状数组与线段树</a><time datetime="2025-05-25T03:11:07.000Z" title="发表于 2025-05-25 11:11:07">2025-05-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 1.5em; color: #99a9bf">小结</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.1em; color: #999">教程</a> <a href="/tags/hcz/" style="font-size: 1.3em; color: #99a1ac">hcz</a> <a href="/tags/%E7%BD%AE%E9%A1%B6/" style="font-size: 1.1em; color: #999">置顶</a> <a href="/tags/%E5%91%A8%E8%B5%9B/" style="font-size: 1.1em; color: #999">周赛</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>归档</span>
@@ -776,7 +1035,7 @@
           <span class="card-archive-list-count">1</span>
         </a>
       </li>
-    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">13.9k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-13T05:37:32.012Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Change</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">13.9k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-13T06:27:15.182Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Change</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
   const loadMathjax = () => {
     if (!window.MathJax) {
       window.MathJax = {
