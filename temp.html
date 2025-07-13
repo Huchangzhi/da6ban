@@ -1,0 +1,888 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>oier博客 | oier博客</title><meta name="author" content="Change"><meta name="copyright" content="Change"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="暑假作业完成进度                   * {             margin: 0;             padding: 0;             box-sizing: border-box;             font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-se">
+<meta property="og:type" content="website">
+<meta property="og:title" content="oier博客">
+<meta property="og:url" content="https://oi.胡.fun/temp.html">
+<meta property="og:site_name" content="oier博客">
+<meta property="og:description" content="暑假作业完成进度                   * {             margin: 0;             padding: 0;             box-sizing: border-box;             font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-se">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huchangzhi.github.io/image/head.png">
+<meta property="article:published_time" content="2025-07-13T05:28:51.521Z">
+<meta property="article:modified_time" content="2025-07-13T05:28:51.521Z">
+<meta property="article:author" content="Change">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huchangzhi.github.io/image/head.png"><link rel="shortcut icon" href="https://huchangzhi.github.io/image/head.png"><link rel="canonical" href="https://oi.胡.fun/temp.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'oier博客',
+  isHighlightShrink: true,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/1.css"><link rel="stylesheet" href="/css/tm.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://huchangzhi.github.io/image/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://bing.img.run/rand_uhd.php);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://huchangzhi.github.io/image/head.png" alt="Logo"><span class="site-name">oier博客</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暑假作业完成进度</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
+            min-height: 100vh;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #006064;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .date {
+            font-size: 1.1rem;
+            color: #00838f;
+            font-weight: 500;
+        }
+        
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 105, 148, 0.15);
+            width: 300px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 105, 148, 0.2);
+        }
+        
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #00838f, #4fb3bf);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .subject-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .subject-title i {
+            font-size: 1.6rem;
+        }
+        
+        .chinese .subject-title { color: #e91e63; }
+        .math .subject-title { color: #3f51b5; }
+        .english .subject-title { color: #009688; }
+        
+        .progress-percent {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #006064;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .progress-bar {
+            height: 14px;
+            background: #e0e0e0;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 7px;
+            transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .chinese .progress-fill { background: linear-gradient(90deg, #f48fb1, #e91e63); }
+        .math .progress-fill { background: linear-gradient(90deg, #9fa8da, #3f51b5); }
+        .english .progress-fill { background: linear-gradient(90deg, #80cbc4, #009688); }
+        
+        .task-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e0e0;
+            margin-top: 15px;
+        }
+        
+        .task-list.show {
+            max-height: 500px;
+        }
+        
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .task-name {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-progress {
+            font-weight: 600;
+            color: #006064;
+        }
+        
+        .overall-progress {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 105, 148, 0.15);
+            padding: 30px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .overall-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .overall-header h2 {
+            font-size: 2rem;
+            color: #006064;
+            margin-bottom: 10px;
+        }
+        
+        .overall-stats {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .stat-card {
+            background: #e0f7fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00838f;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #006064;
+        }
+        
+        .overall-bar {
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .overall-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00838f, #4fb3bf);
+            border-radius: 10px;
+            transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #00838f;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .subject-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .overall-stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-book-open"></i> 暑假作业完成进度</h1>
+        <div class="date">2025年7月13日 更新</div>
+    </div>
+    
+    <div class="dashboard">
+        <!-- 语文卡片 -->
+        <div class="subject-card chinese" onclick="toggleDetails(this)">
+            <div class="card-header">
+                <div class="subject-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span>语文</span>
+                </div>
+                <div class="progress-percent" id="chinese-percent">0%</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>进度</span>
+                    <span id="chinese-completed">0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="chinese-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="task-list" id="chinese-tasks">
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-book"></i>
+                        <span>练习册 (50页)</span>
+                    </div>
+                    <div class="task-progress" id="chinese-workbook">0%</div>
+                </div>
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-file-alt"></i>
+                        <span>作文 (3篇)</span>
+                    </div>
+                    <div class="task-progress" id="chinese-essay">0%</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 数学卡片 -->
+        <div class="subject-card math" onclick="toggleDetails(this)">
+            <div class="card-header">
+                <div class="subject-title">
+                    <i class="fas fa-calculator"></i>
+                    <span>数学</span>
+                </div>
+                <div class="progress-percent" id="math-percent">0%</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>进度</span>
+                    <span id="math-completed">0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="math-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="task-list" id="math-tasks">
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-book"></i>
+                        <span>练习册 (48页)</span>
+                    </div>
+                    <div class="task-progress" id="math-workbook">0%</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 英语卡片 -->
+        <div class="subject-card english" onclick="toggleDetails(this)">
+            <div class="card-header">
+                <div class="subject-title">
+                    <i class="fas fa-language"></i>
+                    <span>英语</span>
+                </div>
+                <div class="progress-percent" id="english-percent">0%</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>进度</span>
+                    <span id="english-completed">0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="english-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="task-list" id="english-tasks">
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>打卡 (35次)</span>
+                    </div>
+                    <div class="task-progress" id="english-checkin">0%</div>
+                </div>
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>试卷 (15张)</span>
+                    </div>
+                    <div class="task-progress" id="english-test">0%</div>
+                </div>
+                <div class="task-item">
+                    <div class="task-name">
+                        <i class="fas fa-newspaper"></i>
+                        <span>英语报 (19页)</span>
+                    </div>
+                    <div class="task-progress" id="english-newspaper">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overall-progress">
+        <div class="overall-header">
+            <h2><i class="fas fa-tasks"></i> 总体进度</h2>
+        </div>
+        
+        <div class="overall-stats">
+            <div class="stat-card">
+                <div class="stat-label">完成作业量</div>
+                <div class="stat-value" id="total-completed">0</div>
+                <div class="stat-label">总作业量</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">总体进度</div>
+                <div class="stat-value" id="total-percent">0%</div>
+                <div class="stat-label">剩余工作量</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">剩余时间</div>
+                <div class="stat-value">∞天</div>
+                <div class="stat-label">预计完成日期: 我不到呀</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>总进度</span>
+                <span id="total-progress-text">0%</span>
+            </div>
+            <div class="overall-bar">
+                <div class="overall-fill" id="total-bar" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>提示: 点击学科卡片可查看详细作业项 | 最后更新: 2025-07-13</p>
+    </div>
+
+    <script>
+        // 所有作业参数配置（只需修改这里的完成量）
+        const homeworkConfig = {
+            // 语文作业
+            chinese: {
+                workbook: {
+                    total: 50,       // 总页数
+                    completed: 8,    // 已完成页数（修改这里）
+                    weight: 2        // 权重
+                },
+                essay: {
+                    total: 3,        // 总作文数
+                    completed: 0,    // 已完成作文数（修改这里）
+                    weight: 5        // 权重
+                }
+            },
+            
+            // 数学作业
+            math: {
+                workbook: {
+                    total: 76,      // 总页数
+                    completed: 29,   // 已完成页数（修改这里）
+                    weight: 3        // 权重
+                }
+            },
+            
+            // 英语作业
+            english: {
+                checkin: {
+                    total: 35,      // 总打卡次数
+                    completed: 16,   // 已完成次数（修改这里）
+                    weight: 1        // 权重
+                },
+                test: {
+                    total: 15,       // 总试卷数
+                    completed: 1,    // 已完成试卷数（修改这里）
+                    weight: 2        // 权重
+                },
+                newspaper: {
+                    total: 19,       // 总页数
+                    completed: 0,    // 已完成页数（修改这里）
+                    weight: 1.5      // 权重
+                }
+            }
+        };
+        
+        // 计算学科进度
+        function calculateSubjectProgress(subject) {
+            let totalWeight = 0;
+            let completedWeight = 0;
+            
+            for (const task in subject) {
+                const { total, completed, weight } = subject[task];
+                totalWeight += total * weight;
+                completedWeight += completed * weight;
+            }
+            
+            // 避免除以0的情况
+            const progress = totalWeight > 0 ? Math.min(100, (completedWeight / totalWeight) * 100) : 0;
+            
+            return {
+                progress: progress.toFixed(1),
+                completed: completedWeight.toFixed(1),
+                total: totalWeight.toFixed(1)
+            };
+        }
+        
+        // 计算总体进度
+        function calculateTotalProgress() {
+            let totalCompleted = 0;
+            let totalWeight = 0;
+            
+            // 语文
+            const chinese = calculateSubjectProgress(homeworkConfig.chinese);
+            totalCompleted += parseFloat(chinese.completed);
+            totalWeight += parseFloat(chinese.total);
+            
+            // 数学
+            const math = calculateSubjectProgress(homeworkConfig.math);
+            totalCompleted += parseFloat(math.completed);
+            totalWeight += parseFloat(math.total);
+            
+            // 英语
+            const english = calculateSubjectProgress(homeworkConfig.english);
+            totalCompleted += parseFloat(english.completed);
+            totalWeight += parseFloat(english.total);
+            
+            // 避免除以0的情况
+            const progress = totalWeight > 0 ? Math.min(100, (totalCompleted / totalWeight) * 100) : 0;
+            
+            return {
+                progress: progress.toFixed(1),
+                completed: totalCompleted.toFixed(1),
+                total: totalWeight.toFixed(1)
+            };
+        }
+        
+        // 更新UI
+        function updateUI() {
+            // 更新语文进度
+            const chineseProgress = calculateSubjectProgress(homeworkConfig.chinese);
+            document.getElementById('chinese-percent').textContent = `${chineseProgress.progress}%`;
+            document.getElementById('chinese-bar').style.width = `${chineseProgress.progress}%`;
+            document.getElementById('chinese-completed').textContent = `${chineseProgress.completed}/${chineseProgress.total}`;
+            
+            // 更新语文各项任务
+            const chinese = homeworkConfig.chinese;
+            document.getElementById('chinese-workbook').textContent = 
+                `${Math.round((chinese.workbook.completed / chinese.workbook.total) * 100)}%`;
+            document.getElementById('chinese-essay').textContent = 
+                `${Math.round((chinese.essay.completed / chinese.essay.total) * 100)}%`;
+            
+            // 更新数学进度
+            const mathProgress = calculateSubjectProgress(homeworkConfig.math);
+            document.getElementById('math-percent').textContent = `${mathProgress.progress}%`;
+            document.getElementById('math-bar').style.width = `${mathProgress.progress}%`;
+            document.getElementById('math-completed').textContent = `${mathProgress.completed}/${mathProgress.total}`;
+            
+            // 更新数学各项任务
+            const math = homeworkConfig.math;
+            document.getElementById('math-workbook').textContent = 
+                `${Math.round((math.workbook.completed / math.workbook.total) * 100)}%`;
+            
+            // 更新英语进度
+            const englishProgress = calculateSubjectProgress(homeworkConfig.english);
+            document.getElementById('english-percent').textContent = `${englishProgress.progress}%`;
+            document.getElementById('english-bar').style.width = `${englishProgress.progress}%`;
+            document.getElementById('english-completed').textContent = `${englishProgress.completed}/${englishProgress.total}`;
+            
+            // 更新英语各项任务
+            const english = homeworkConfig.english;
+            document.getElementById('english-checkin').textContent = 
+                `${Math.round((english.checkin.completed / english.checkin.total) * 100)}%`;
+            document.getElementById('english-test').textContent = 
+                `${Math.round((english.test.completed / english.test.total) * 100)}%`;
+            document.getElementById('english-newspaper').textContent = 
+                `${Math.round((english.newspaper.completed / english.newspaper.total) * 100)}%`;
+            
+            // 更新总体进度
+            const totalProgress = calculateTotalProgress();
+            document.getElementById('total-percent').textContent = `${totalProgress.progress}%`;
+            document.getElementById('total-bar').style.width = `${totalProgress.progress}%`;
+            document.getElementById('total-progress-text').textContent = `${totalProgress.progress}%`;
+            document.getElementById('total-completed').textContent = `${totalProgress.completed}`;
+        }
+        
+        // 切换学科详情显示
+        function toggleDetails(card) {
+            const taskList = card.querySelector('.task-list');
+            taskList.classList.toggle('show');
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+        });
+    </script>
+</body>
+</html></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://huchangzhi.github.io/image/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Change</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1031975"><i class="fas fa-envelope"></i><span>点我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果要在这个网站发布文章,请线下或线上找hcz,<a target="_blank" rel="noopener" href="https://udify.app/chat/IugHAgbm0OX7sLSt">oiAI</a>  <a target="_blank" rel="noopener" href="https://udify.app/chat/QmDHgfHuUzCESxNt">     DeepGemini</a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/14514/11/14/%E9%80%9A%E7%9F%A5/" title="通知">通知</a><time datetime="+014514-11-14T03:45:14.000Z" title="发表于 14514-11-14 11:45:14">14514-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/13/%E6%9A%91%E5%81%87%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E8%BF%9B%E5%BA%A6/" title="暑假作业完成进度">暑假作业完成进度</a><time datetime="2025-07-13T04:16:42.000Z" title="发表于 2025-07-13 12:16:42">2025-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/09/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/" title="背包问题笔记">背包问题笔记</a><time datetime="2025-07-09T08:43:53.000Z" title="发表于 2025-07-09 16:43:53">2025-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/13/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AC%94%E8%AE%B0/" title="状态压缩笔记">状态压缩笔记</a><time datetime="2025-06-13T15:34:59.000Z" title="发表于 2025-06-13 23:34:59">2025-06-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/25/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E4%B8%8E%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="树状数组与线段树">树状数组与线段树</a><time datetime="2025-05-25T03:11:07.000Z" title="发表于 2025-05-25 11:11:07">2025-05-25</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/hcz/" style="font-size: 1.3em; color: #99a1ac">hcz</a> <a href="/tags/%E7%BD%AE%E9%A1%B6/" style="font-size: 1.1em; color: #999">置顶</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.1em; color: #999">教程</a> <a href="/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 1.5em; color: #99a9bf">小结</a> <a href="/tags/%E5%91%A8%E8%B5%9B/" style="font-size: 1.1em; color: #999">周赛</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/14514/11/">
+          <span class="card-archive-list-date">十一月 14514</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/07/">
+          <span class="card-archive-list-date">七月 2025</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/06/">
+          <span class="card-archive-list-date">六月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/05/">
+          <span class="card-archive-list-date">五月 2025</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/03/">
+          <span class="card-archive-list-date">三月 2025</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">13.9k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-13T05:29:39.060Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Change</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://ltq2.xn--920a.fun',
+      region: 'true',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://ltq2.xn--920a.fun',
+      region: 'true',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>
+  window.difyChatbotConfig = { token: 'IugHAgbm0OX7sLSt' }
+</script>
+<script src="/js/1.min.js" id="IugHAgbm0OX7sLSt" defer> </script><script type="text/javascript" color="180,180,180" opacity="0.5" count="200" src = "/js/2.js"> </script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.xn--920a.fun/dl/https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="AC,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,AC,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,AC,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,AC,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,WA,RE,TLE,MLE,CE,UKE,PE,JE,AKIOI" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

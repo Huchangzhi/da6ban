@@ -23,6 +23,38 @@
     
     
     <entry>
+      <title>暑假作业完成进度</title>
+      <link href="/2025/07/13/%E6%9A%91%E5%81%87%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E8%BF%9B%E5%BA%A6/"/>
+      <url>/2025/07/13/%E6%9A%91%E5%81%87%E4%BD%9C%E4%B8%9A%E5%AE%8C%E6%88%90%E8%BF%9B%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<p><a href="/temp.html">点我</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>背包问题笔记</title>
+      <link href="/2025/07/09/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+      <url>/2025/07/09/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="背包问题笔记">背包问题笔记</h1><h2 id="采药"><ahref="https://www.luogu.com.cn/problem/P1048">采药</a></h2><h3 id="题目大意">题目大意</h3><p>有 <span class="math inline">\(M\)</span>棵草药，每棵草药有对应的价值与采摘所需要的时间，hcz有 <spanclass="math inline">\(T\)</span> 时间</p><h3 id="试图贪心">试图贪心</h3><p>我刚见到时，直接想到贪心</p><p>物品的性价比=价值 <span class="math inline">\(v_{i}\)</span> /需要的时间 <span class="math inline">\(w_{i}\)</span></p><p>按性价比排序，优先选择性价比高的</p><p>结果......听取 WA 声一片</p><h3 id="dp">DP</h3><p>设<span class="math inline">\(f_{i}\)</span></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 小结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>状态压缩笔记</title>
       <link href="/2025/06/13/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AC%94%E8%AE%B0/"/>
       <url>/2025/06/13/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%AC%94%E8%AE%B0/</url>
